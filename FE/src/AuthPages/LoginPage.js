@@ -47,6 +47,7 @@ export default function SignInPage() {
         password: password,
       };
       console.log(process.env);
+      console.log("API Endpoint:", process.env.REACT_APP_API_ENDPOINT);
       let { data } = await axios.post(`${url}/auth/login`, body);
       if (!Object.keys(data).includes("Error")) {
         setEmail("");

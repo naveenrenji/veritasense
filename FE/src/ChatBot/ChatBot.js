@@ -44,7 +44,7 @@ function ChatBot() {
     }
     try {
       console.log("API Endpoint:", process.env.REACT_APP_API_ENDPOINT);
-      const response = await axios.post(" ${url}/chat", {
+      const response = await axios.post(`${url}}/chat`, {
         message: input,
         context,
       });
