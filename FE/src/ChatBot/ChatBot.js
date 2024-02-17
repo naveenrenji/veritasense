@@ -7,6 +7,7 @@ import botAvatar from "./VeritasMan.png";
 import { RequireAuth, useAuthUser } from "react-auth-kit";
 
 function ChatBot() {
+  let url = process.env.REACT_APP_API_ENDPOINT;
   const auth = useAuthUser();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -41,7 +42,7 @@ function ChatBot() {
       return;
     }
     try {
-      const response = await axios.post("http://127.0.0.1:5000/chat", {
+      const response = await axios.post(" ${url}/chat", {
         message: input,
         context,
       });
