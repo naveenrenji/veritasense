@@ -15,6 +15,7 @@ function ChatBot() {
   const [context, setContext] = useState("");
   const messagesEndRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false); // New state for loading animation
+  
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -42,6 +43,7 @@ function ChatBot() {
       return;
     }
     try {
+      console.log("API Endpoint:", process.env.REACT_APP_API_ENDPOINT);
       const response = await axios.post(" ${url}/chat", {
         message: input,
         context,
