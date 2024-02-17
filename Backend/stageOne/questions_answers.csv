@@ -1,0 +1,325 @@
+﻿question,answer
+My code for EX07 is complete except for the word cloud portion. I am having trouble getting it installed and keep getting this error. Through the regular install or when I try to use a pip command in the terminal. Please let me know if you know how to resolve this issue.,You can also install through pycharm package.
+Thank you for your quick response. Trying to install through PyCharm package is the method I am currently using and how I got the error in the image I sent. Do you know of anything else that could be the issue?,"I can not tell what’s the problem from the image you send. 
+Did you install the package successfully now?"
+"No, I do not have wordcloud installed. All other packages installed without a problem. I have tried shutting down and restarting pycharm, which I guess I will continue to do hoping it works before the due time today. I will also try to see if I can find anything online for this issue.","There’s another way to install: through terminal in pycharm, which requires you clear of your python path of your current project and use ‘-m pip install wordcloud ‘. 
+This is a little complex, But if you know your python path in your current project，this is not a problem. "
+"That’s, what I found online. I have attempted doing it that way but I most likely did that method wrong. I will continue to try both. Not really sure what the issue is. I assume this is not an issue for other students. Also, I am not sure if this means anything but I think the right side that gives a preview of wordcloud is off on my computer, at least compared to the other libraries:","This is what I would do if I want to install through terminal:
+first find the python path in your console, then use the path to install your target package, "
+"Can I please have the EM 624 midterm scheduled to a different time as well?
+I have work right up until 6:30 and won't have a place to take the exam in time.","Yes, you can do that.
+But the make up midterm test date is not set yet, you will get notification once we have the list."
+I wanted to know If I can I present my code on jupyter notebook for the presentation?,"Sure you can, but you still need to submit a working py."
+"This is regarding the final project I ve just run the code I have sumbitted yesterday I did a very small mistake of not closing a bracket . Which is causing syntax error ‘(‘ was never closed in line 106 
+Can please add the bracket and sumbit my code ?",Sure!
+"I have submitted my project report along with an ""ipynb file"". I couldn’t submit the "".py file "" as i was not getting the full results on the ""py file"" 
+so I submitted the ""ipynb file"" 
+but I sending the ""py file"" here for reference. ","student has .py file and we can not run .py and notebook file together on MOSS. Since she has .py file, I think it would be better for her to submit her .py file on canvas. Only .py file through canvas accepted. Please contact IT ASAP!"
+"I can submit the py file but as I said I am not able to get a few results on the py file for some reason and that is the reason why I had to submit the ipynb file
+If you want I can submit the py file if you want  ",Send the .py file please. Thanks. 
+Can i send it on canvas i am not able to send it on the outlook ,"Yes, please submit on canvas as usual and we can not download any .py nor notebook file through this email system."
+I am facing issues for logging in my stevens but was able to do it via canvas app on my phone. There might be confusion with the files. Hence submitting the files here as well for your review.I have also attached my IT ticket for the same.,"Please contact the IT ASAP, you may submit it on canvas by Tuesday 6:30PM, no late submission penalty for you."
+"I am attaching the files again, plz let me know whether you can access it?","Hi, the email system does not allow us to download the .py file. "
+"Thanks I will get back to you by tomorrow. Meanwhile, is it possible for you to check if you have received both of my files on canvas submission (final project & py).","Only PDF is available on canvas. Again, contact IT ASAP. "
+I need a little more time to complete my final project. I’m trying to implement a different method and it’s taking me more time. Hope you understand my situation. ,I can give you 1 more day.
+I apologize for missing the presentations I have a BSI quality audit going on at work this week that I am heavily involved in. I submitted the PowerPoint I put together on canvas. As for the code I have attached it to this email along with the csv file so you can run it. Let me know if you have any questions.,"Please submit through canvas, we can not download the .py file through emails. "
+"For this assignment, the instructions tell us to list the top 5 courses, but the ""courses"" column call out sections and not the course as a whole, yet the instructions also list the ""courses"" that are open or closed. I want to verify if we are treating the ""courses"" call out in the instructions in part 1 as separate where when it states to list the top 5 courses, it means to list the top 5 ""Titles"" or the the Course capturing multiple sections, and in part 4 where its asking for the courses running at full capacity, it wants individual sections of the course labeled in the ""course"" column.","The dataset is organized by courses.
+Each line/record/datapoint is a course. Consider each one as ""course"".
+For example, EM 624A is a different course from EM 624WS.
+For the 1st question which is asked to print five course with highest total student number, this is between 'Course' and 'Enrollment Count' not involved with 'Title'. For the 4th question which is asked for course with full capacity (closed) and not full capacity (open), this part you may use 'Section Status' and 'Course'. Both of these two task are not related to 'Title'."
+"i have been having a lot of problems with my old laptop and connection issues (just moved). it was so bad that i have couldn't complete my some of my missing assignment, that, and my work schedule have been really packed with travelling for audits. would it be possible for me to turn my missing homework in for some points?","It’s not fair to other students and we do not have extra schedule to grade again, you should follow the course syllabus, which state the problem pretty clear. "
+I wanted to propose a plan for the final semester project. I have attached the same for your review. Please let me know your feedback and if I can go ahead for the same and start working on it. I wanted to do the project I had sent for your review since I have a fintech background already in my previous work experience and I want to apply for finance based jobs in future as well. So I wanted to do something using python and it’s tools but also wanted this project to support my resume and it will help me fetching data jobs in finance firms,"Considering your particular case/interest, I would be OK having you working on a different project besides the ones we proposed. In order to approve it, I need to have 1. a specific description of the scope of the project and 2. the dataset you are going to use. The scope would be similar to what is in the description of the other projects. In particular, the questions you want to answer. Without those 2 elements, I cannot approve your project."
+Please find attached the required description of the project proposal and kindly let me know your feedback on the same.,"Proceed with this project.
+Please make sure the level of complexity of the analysis will be reflected by a Python script of a size not less than the very last assignments."
+I didn’t receive grades for exercise 7&8. Could you please check that. Thank you.,EX07 is graded and available on canvas. EX08 is not graded yet.
+"we are going to use Statista to find the number of mass shooting that happened before the pandemic, after, and during the pandemic. We will compare that number to see if there are any changes in that number during those times. We will also use Statista to find the top 5 news outlet used in the USA and analyze the outlook or opinions of those 5 news outlet. The goal is to analyze any biasness on what each news outlet think may cause the mass shootings this can directly correlate with public opinion as well and from the data gathered from Statista, we can analyze if these news outlook tone (sentiment) matches Statista's data (increase, decrease, or unchanged). example, is CNN downplaying mass shooting and does not think that it is a big deal when the data clearly shows that mass shooting is increasing each year or is FOX news overblowing mass shooting but from the data gathered, it remains unchanged.","This is an interesting topic to analyze. Make sure the data you have is substantial enough to make relevant analyses.
+Statista has interesting datasets, but the free versions are most of the times limited."
+"I've received a 0 for EX07 due to honest mistake by submitting the wrong files. 
+Can you please allow me to submit the correct files? I also included 2 screenshots that shows a timestamp of when the files were last modified/worked on. Please see attached.  ","Yes, that would be fine. Please resubmit on canvas because we can not open the .py file through email.
+Once you submitted, please email us that you have resubmitted."
+"I'm just wanted to follow up on this. I've submitted the correct files on 04/15, were you able to see them in Canvas? ","Graded, report is good.
+But you did not attach the 'Pros.txt' and 'Cons.txt' file, details refer to the commne on canvas.
+Plus this is re-submit, we can not allow to re-re-submit, so your grade now is final grade."
+"I have a question and require some guidance for ex08. To follow the procedure, I am appending my headlines into a list as follows: I am trying to remove the stopwords using this code, Later on the procedure asks for the sentiment of the entire headline, so I felt as if I could not break up the list of lists into one flat list. But, this is not removing all of the stop words, only some. Can you help give me guidance? I’ve attached the file as well.","I think you may refer to the following procedure.
+create headline list
+transform the word in the list into lower ones
+remove stop word 
+use the ' 'join(list) function (Professor Carlo mentioned in the previous email) to convert the list into string to prepare for the following word cloud."
+"I hope you are well. I am very sorry for the last minute question on tonight’s homework. I am forwarding a question I posed to Shiyu in case you have any available before tonight’s class to help.
+ 
+I am struggling to understand how to clean the headlines since they are framed into a list of lists (the list ‘headlines’ containing each headline as a separate list of words within itself). I was thinking about creating a flat list of all the words, but that would pose an issue when part 7. of the procedure asks for the sentiment of the headlines, so I must keep them intact.","Anyway, you can always go back and forth from list to strings.
+Python has the join() method in one way and the string.split(""delimiter"") the other way."
+"I plan on doing covid-19 US county data as my final project if nobody else has taken it yet. Additionally, tonight during class I know we didn’t get a chance to go over homework 11. Will you be posting the solution at some point?","OK for the Covid-19. Yes, I'll post the solution for HW11 by tomorrow and we'll eventually discuss it nexxt week."
+I forgot to upload the report with my py file. Please find the attached report file in this mail. I assure you that this file was made on the day I uploaded my assignment. Kindly consider this as my last mistake. I will make sure that this doesn't happen again.,Okay. 
+"I have been working on the EX07 assignment and I am very lost. I am not able to figure out the vader package, how to run the sentiment analysis, extract the bigram or create the word cloud. I have attended lecture, watched the recordings, reviewed samples and done my own research of outside sources and I do not know what to do. How should I proceed? ",
+"I am currently working on EX08 and still do not understand or know how to use bigrams, word clouds or beautiful soup. I want to do well in this class but do not understand these topics. Please pass along any assistance you can provide because I do not know how to finish this assignment. ","bigrams: Edpresso is awesome, I love it. --> Edpresso is--> is awesome--> awesome, --> , I --> I love, love it-->it.
+The following resource explains pretty clear about wordcloud and beautiful soup. word clouds: https://www.geeksforgeeks.org/generating-word-cloud-python/ beautiful soup: https://www.geeksforgeeks.org/implementing-web-scraping-python-beautiful-soup/ "
+"My groups which consist of Mina Shafik , Dean Manomat, and I, would like to do our project in mass shooting around the world in the last year and how it is portrayed in the media.
+Please advise if this is appropriate. Are we allowed to analyze 'mass shooting'? ","It is OK working on a different topic, but you need to share the data source you are using and more details on what you want to achieve (1 short paragraph would be OK).
+What you said ""mass shooting around the world in the last year and how it is portrayed in the media"" does not give me enough details."
+"My groups which consist of Mina Shafik , Dean Manomat, and I, would like to do our project in mass shooting around the world in the last year and how it is portrayed in the media.
+Please advise if this is appropriate. Are we allowed to analyze 'mass shooting'? ","Please also let professor Carlo aware of your project scope. 
+If approved, do make sure to include your data in the submission and DO NOT use .zip file."
+"While reading the procedure for homework 10 I had a question about the bigrams.  Step 8 reads:
+
+""Extract bigram, generating a separate list. Consider bigrams 2 words appearing together more than 2 times in the whole text. Bigrams will be like “word1_word2”, meaning you will create a new string composed by the 2 words, separated by an underscore (“_”)"". 
+
+I wanted to confirm if we are supposed to be checking if each of the bigrams appears in the text of titles at least 2 times, or if we are using the entire list of bigrams that is generated.","if we consider all the bigrams, they will be way too many, being a full list of all the words.
+As in the requirements, consider only ""2 words appearing together more than 2 times in the whole text”."
+"I was looking at my grade for homework 8 and the comment says ""ocupations.csv' this file is not submitted which is used in the code"".  I realize that I completely forgot to attach the csv file I used to replace the occupations in my code.  Would I be able to resubmit the assignment and include the file to be considered for an adjustment to my grade?","yes, please, resubmit your assignment."
+"I am trying to work on Assignment 07 but I am having problems with reading the txt file I have created. I keep getting the attached error message on python. I am unsure of how to find the unreadable character it is mentioning. Do you know how I can get around this? I have attached the txt file for reference as well.
+
+Any tips on how I should prepare the txt file so it can be read by python?",You may use encode= “utf-8” to give a try or use other encoding. 
+"I have a question about the midterm. For the first question in the code-checking portion of the midterm it states that “for every character in the original, there are two characters “ as the desired outcome. But in the example it says ‘The’à’TTThhheee’ which would be 3 characters for each original character. So in this case is the desired output ‘TTThhheee’ or just ‘TThhee’.",It should be ‘TTThhheee’ 
+ I went to look at the midterm for EM 624 but do not see it posted.  I wanted to check when the midterm will be available/unlocked to start working on it.,The midterm has been published minutes ago.
+I wanted to ask you if we need to exclude the count of all rows that have covid 19 as a primary disease for all parts of the assignment. It wasn't too clear in the procedure.,"I am not sure what do you mean, but please follow the description of the HW and the hint I just sent."
+I noticed that when you went over the solution to HW 4 yesterday in class the assignment seemed slightly different than the assignment I did. You can see attached for the assignment I downloaded from Canvas. Was the assignment ever updated during the middle of the week? I know Canvas has been a little weird this semester so just want to make sure I am not missing something.  ,"The version of HW4 related to the code I presented yesterday was posted on Canvas on 2/14, that is the day the assignment was introduced to the class.
+If you check the video recording for the class, you will see the current version, not the older one you sent to me. Just go to 1h21'18"".
+Bottom line, HW4 has 3 parts, not 2.
+We can be flexible this time, considering this as a misunderstanding, but in the future, please always check what is presented as assignment in class.
+
+ "
+"I downloaded pandas onto pycharm last week for homework for a different class last week. However, when I opened up PyCharm it said that pandas were no longer installed even though I used them for a different homework assignment. It now gives me the following message when I try to install the package. Do you have any suggestions? I tried pasting the code it suggested but that didn't work either. Let me know if you can help!","first, uninstall the pandas (either delete the installed pandas in the python packages or use pip uninstall pandas)
+second, reinstall the pandas wither in python packages or use pip install pandas.
+
+How to install package in python packages, please refer: (recommend)
+https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html#packages-tool-window
+
+How to install package in interpreter using pip install, please refer: 
+https://packaging.python.org/en/latest/tutorials/installing-packages/"
+"I'm having trouble with this code and have been stuck for awhile. It looks like I can't write words or a ""string"" when I'm in a float command but I'm not sure how to write this a different way. Can you help me with this? Let me know please!","your question is not very clear, a string or word in a string format should be first defined and then call the predefined variable. "
+I just wanted to confirm that for our assignment due this wednesday we only have to submit the .py file and no screenshots are needed (like was needed for assignment 00.,"No screen shot needed, and please only submit the .py file before Wednesday 6:30PM."
+It seems like the assignment 1 has not been uploaded to canvas yet. And I’m unable to submit my assignment.,"I have published the assignment submission link. 
+Could you open it now?"
+"Good Morning , I just joined SYS 624 class just yesterday because I had swapped it for another course, and I was wondering if I could get an extension or a void for the assignment for EX00 ?  I also wanted to ask you on what days and times do we have zoom meetings ? ","OK for the extension. Please submit it this weekend.
+
+Classes are on Wednesday at 6:30pm, as in Canvas.
+I'll do my best to have 100% of the classes synchronous/live.
+
+If you want to have a meeting online/Zoom, please let me know what your availability is this coming week."
+"
+Hey Shiyu, where is the second assignment? EX01 due next week. Has it not been uploaded yet?The Celsius to Fahrenheit one? There is no assignment created to upload ","EX01 is the home work that will due next week. It is available since early this morning.
+You should check your canvas, revise how did you find and do your first HW: EX00."
+"I am having troubles with python. The homework is very simple but I think there was some issue with the download. I tried to fix it with a friend who also has a mac (including uninstalling and reinstalling the entire program) and still had issues when they had none doing the exact same process. Initially, it said that there was an issue with the python interpreter and now it won't let me type in the box when I run the downloaded program in exercise 00. When can we meet to fix this? The homework is very simple and I know exactly how to do this but I may need a slight extension if I don't figure out this bug. Please let me know!",Please join the zoom meeting.
+"I am attending an web campus section of yours i.e. EM 624 Informatics for EM
+
+Since the classes have commenced from 18th January and my trip in India has been extended till 29th January due to some family work. I wanted to inform you that I will be attending the lectures from the 2nd of February. In the meanwhile, I would like to request the extension on the assignments if there would be any so that I can come back and cope up with the curriculum.","OK for a 2 days extension.
+
+Classes are online (even if too early for people in your time zone) and recorded."
+"I am jalaj from class EM-624, I just saw the grades for my project submission and reviewed your comments. I will remove the comments from the code if that’s what is reducing my grades. Also, you’ve mentioned about late submission but I already asked for an extension till Sunday which was approved by prof. Carlo. Please update my grades accordingly.","I will change score discard the late submission, but your report is not analysis of the result just repeat of the process and paraphrase of the result. 
+
+Your final has been changed from 75% to 83%. "
+"I have resubmitted a .py file with removing all the comments out of it and also, I have resubmitted an updated more elaborated analysis report. Please look into it and update my project grades. All the redone work is according to the comments posted on the canvas by you.",Grade fixed.
+"I am Gayatri Kondapavuluri from EM-624 B , I am here to to talk about considering regrading my final project ,  I know I just did pre-processing of data , which actually took lot of time and couldn't finish couldn't finish what is required but please I would request you to  consider regrading my project and that could really help me in not failing this subject.","Please, just submit it asap.
+
+We’re closing the course by the next couple of days."
+"I just saw my grade posted for the final project for EM 624 and I notice that I lost 80% of the credit because I did not submit my code. May I resubmit it or email it to you and get credit back?
+I apologize for the inconvenience. Please let me know if there is anything that I can do to fix the situation.",submit code please
+"I am Gayatri Kondapavuluri from EM-624 B, I am here to talk about considering regarding my final project,  I know I just did pre-process of data, which actually took a lot of time, and couldn't finish what is required but please I would request you to consider regarding my project and that could really help me in not failing this subject. And I also want to know the grading system you are following and want to know if my scale will fall less than 3.0 on a scale of 4 GPA.",You did not submit your script and the report only counts for 20% of the whole point.
+"First I would like to thank you for the wonderful semester I had taking your class. It was very informative and the knowledge that I have gained from the course will be useful in my future careers. 
+
+Second, I am emailing in regards to inquiring if it would be possible for me to revive a one day extension on homework EX09. I understand this is a little late to be asking for an extension but due to presenting 3 final presentations, one final exam, and other homework’s, today was the first time I was able to start working on the homework. I do not believe I will be able to submit before the 12:00am deadline tonight. 
+
+I apologize for this request and understand that everyone is going through finals right now. But I thought I would email you to see if it were a possibility to receive a one day extension. ",Please submit by end of the day.
+"I am reaching out because I was looking over my grades prior to finals and such, and I see there are a lot of grades that seem off to me. I don't know if the grades just aren't appearing for me or if they haven't been graded yet, but I did just want to be proactive in terms of getting everything settled for the semester. Also, I'm sorry to bother you, but I tried to email the listed TA's email, and it kept bouncing. Let me know if you'd like to meet about anything!","I have emailed him and cc you the situation of his HWs.
+
+Like I mentioned in the email, we commented several times about his script problem, but he did not resubmit HWs."
+"I am Jalaj Mourya from class EM 624-B. I request you to please provide me an extension for the submission of my Final project till Sunday Dec 4th evening, I’m almost half way through my work but due to falling ill I’m not able to cope up with all different assignments from different subjects. Please consider this and if possible provide me with an extension.",OK
+I was informed today that I'll have required work travel during the weeks of 11/28-12/2 and 12/5-12/9. EM624 schedule shows project presentations during these times. Let me know if we can work something out in advance.,"There will be no student presentation for the final project.
+
+You will work on it and submit it, as all the other assignments.
+We will then select some of them and we will present.
+Some students may be asked to do the presentation themselves, but I’ll make sure you will not be one of them."
+"I've made significant progress on my final project. I'm struggling to make more progress while on work travel this week since I'm unable to bring my personal desktop computer with me. Can you accommodate with a few days of extension until 12/5 or 12/6 due to work scheduling?
+
+I can provide proof of significant progress until this point, in addition to proof of work travel this week if you would like.","As explained in class, we do not have a lot of flexibility on the submission.
+I can give you 2 extra days."
+"I mailed professor yesterday about my health condition and causing it a delay in my submission. Since 4 days now I had high fever and cold , was on heavy medication and bed ridden. I am working since yesterday on the project and yet not completed it. Can you allow my submission till 11am ?",Okay
+"I hope you are doing well. I would like to request an extension for the project submission due today. Due to the complexity of the data, it is taking more time than expected for dealing with the errors. I hope you will consider my request. ","OK for a 1 day extension.
+I cannot give more than that, due to final grade submissions restrictions, as I explained in class."
+"I would like to ask if we can get an extension for the deadline of the project. As it is a huge part of our grade, it would be very helpful if we could submit it by this weekend.
+
+I hope if you could consider this request.",You have 1 day extension.
+" re-downloaded my original submission from Canvas into a new folder and re-tested it.
+
+This assignment runs fine on my machine, with or without the cache.txt file submitted. The report file .pdf also opens fine for me in three different programs, so it's hard to tell what the cryptic message above means.
+
+Two things to consider, since this may be setup-related:
+
+1) My submission uses the selenium driver for Chrome, not just the newspaper3k library.
+
+While selenium was needed for the dynamic web content on the site I chose, I didn't want to make it a requirement for *you* to have to reproduce my results.
+
+To that end, I had added a cache function that saves and reloads 'cache.txt' from disk (if it is present, i.e., the cached website content). The cache.txt file should allow you to quickly reproduce my results, exactly, with or without having the selenium driver installed. That was part of my original submission.
+
+2) After review, it appears Canvas renamed all of my submission files with a '-1' suffix (maybe because it was submitted more than once? I don't remember). 'cache.txt' looks like it got renamed to 'cache-1.txt', and without finding 'cache.txt', the program runs from scratch and uses the selenium web driver.","The code may due to different environment configuration. The real problem is about your report, you just list your result without elaborate interpretation about the result. 
+I have corrected the grade from 80/100 to 88/100, but your report lacks of interpretation."
+"Good evening professor, I hope you are doing well. I wanted to request an extension for the project submission which is due tomorrow as I was trying to complete the project, but it is taking a little more time than expected as dealing with errors and due to the complexity of the data. I hope you consider my request for an extension. ","I can give you 1 day extension.
+As I mentioned, we have restrictions on when to post the final grades on the Registrar site."
+"As I was sick I was barely able to do any work in the past 3 days and I am trying really hard to catch up with the lost time but it's really difficult as I was barely able to get off the bed. So I'm writing to you, to request an extension for the project submission that is due tomorrow midnight. 
+I am really sorry for having to ask you this but I have genuinely tried my best to work on this but wasn't successful in doing so. 
+I hope you grant me the permission. Awaiting your reply. ","I can give you 1 day extension.
+As I mentioned, we have restrictions on when to post the final grades on the Registrar site."
+"I have one doubt about analyzing people's migration data. I've not understood one question.
+I've got a doubt about this question regarding changes in income. If a few countries have a high income, then we can say, people will migrate to those countries. But here income status of countries is not given in the Excel file as well as CSV file",The dynamic means changes.
+I wanted to know exactly what the question is asking for.,"How income changes with geographic region or vise versa depends on your own understanding, you need to first define the dynamic then analyze how income changes among different geographic regions."
+"Goodmorning, I am Samradnyi Deshmukh a student from 624 Class, for the final project I have idea for a dataset.
+ LinkedIn dataset: This data set has user's data set from Australia highlighting their position in various companies, Ages of the user,  Follower of the companies, User's number of connection, whether the user uses LinkedIn Premium account or not, Gender of the user. This data we will be used to analyze and evaluate company with highest number of staff, Age group which has more registered user on platform and other visuals using Python code.
+Hope you will approve the dataset. ","As mentioned in class, unless there is a specific reason for selecting a different problem/dataset, you should use one of the proposed problems.
+
+What what would be the reason for you to pick this?"
+The reason I chose this topic is because I think it will have a greater impact on my resumé and there's no existing research paper on this topic and working on this topic will help me publish a research paper under your guidance.,"OK for me.
+Please proceed."
+"I'm writing to request permission to work on the dataset of my choice for the final project; I've picked the beer dataset, which has over 50,000 unique entries. Based on the data, I can determine the best beers based on their overall ratings and the most popular types of beers. and then conduct a sentiment analysis on the best beer reviews. Based on sentiment analysis, it can select the greatest beers and whether those beers are indeed any good based on the overall rating. I've attached the dataset for your convenience. I'm hoping for a positive response","As mentioned in class, unless there is a specific reason for selecting a different problem/dataset, you should use one of the proposed problems.
+
+What what would be the reason for you to pick this?"
+"I am emailing you to ask if it might be possible to be granted additional time for the Final Project (EM 624) which is due on December 2nd. Unfortunately, I am behind with this assignment because I was ill last week with Norovirus and due to this, I am behind the schedule for my submissions.
+I would hope to be able to complete this assignment by the weekend and I hope that you will consider my request.","As mentioned in class, we’re pretty tight with the schedule.
+I can give you 1 day extension.
+
+Pease keep in mind you also have a deadline for EX09 (that is next Wed.)."
+"Myself Yogendra from EM-624. I was working on Analyze research projects. I was going through the question that needs to be addressed in projects and was confused with what data should be scrapped. Do we have to scrape meta data of every thesis like this(https://calhoun.nps.edu/handle/10945/71066?show=full), or we have download the thesis and use information from the pdf. ","Hi, if you chose the 'Analyze research projects', you may need to srape the PDF from web and analyze them. "
+"I just wanted to know which data I have to use for the analysis of the migration project. 
+Is it the following?
+
+1.) UN_Migrations.xlsx
+2.) UN_Migrations.csv
+3.) cc-est2019-alldata.csv
+
+Also while opening the third mentioned file, Excel is crashing. Any suggestions on how to circumvent this problem.","1 and 2 are the same file, in different formats. Use the one will work better for you.
+3 is related to the COVID problem (see the text of the assignment).
+"
+"I am doing final project on Analyze research project, but I am confused with what type of data should be scrapped from website and what insights are required from project. I would appreciate the opportunity to arrange a meeting to discuss this. I am available today and tomorrow on campus. I would really appreciate your advice.","I have a full agenda today.
+I can do tomorrow after 3pm.
+You can check with Shiyu.
+
+Please check the text of the assignment for the sample questions to be addressed."
+"I am trying to do homework #8, but I am having some problems with the newspaper package. At first after trying to download it I was receiving an error ‘Pip install fails: SSL required.’
+I have only received this error from the newspaper package, otherwise my pip installs have been fine. After googling around I tried
+easy_install newspaper
+and it said downloaded but in my IDE it still says No module named 'newspaper' .
+ 
+I’m stuck here and was hoping for help. ","Great, Andrew
+
+Thanks for letting me know.
+I’m adding Shiyu in cc, to have her in the loop."
+"I wanted some clarity on the following lines in the analyzing of time distribution of the research activities project, ""Once the list is extracted as return value in a set of web pages, the content can be scraped using a script. Content would be pdf files.
+A relevant subset (10-20) of the total documents would be sufficient for the analysis.""","his is a 3 steps process:
+download the files from different periods of time
+analyze the document in each bucket/period of time (the means - among other - most frequent words, word clouds, sentiment, eventually networks)
+write your conclusions."
+"EM 624 Final, Missing Data File for People Migration
+show quoted text
+I have a personal interest in analyzing People Migration for the Final project, but I don't see the data file posted.
+
+On a side note, there are five files described in the COVID section of the Word Doc--those all appear to be posted correctly--so after looking through each of them, I don't believe there is a naming issue or a simple mix-up like that.
+
+I will continue looking around online, but I think I'm possibly either missing something, or maybe the file didn't post to Canvas correctly.","I published the files.
+
+Sorry for the inconvenience!"
+"
+I was looking for the database required for project 1 (“Analyze People Migration Data”) on EM 624 on Canvas, and there is no database for this project. Four files and one pdf are available on Canvas (Data.png attached), and all are for the COVID-19 project (COVID.png attached). Please let me know if there is any data for this example.",All required data are in the list. Based on the project you chose you may find the corresponding data.
+"I am not able to install any libraries on Pycharm. As a result, I am not able to do the assignments. I talked to Professor about this and he told me to approach you. Is it possible for us to meet and look into this?","Please refer to the following tutorial to install packages on pycharm, when I use pycharm in the beginning, I also refer to this kind of tutorials, they're very helpful.https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html#packages-tool-window.  
+This is a video that instruct how to install package on pycharm.
+https://www.youtube.com/watch?v=qDEfvN7Du54"
+"For my EM 624 final project, can I please work on analyzing NYC taxicab data? The New York City Taxi and Limousine Commission (TLC) publishes trip records in an open data format here. There are different files available on a monthly basis for yellow cabs, green/boro cabs and for hire vehicles (e.g. Uber, Lfyt). 
+
+For my project, I would like to analyze a subset of this data. Some topics I would be interested in exploring include: analyzing all trips by yellow cabs last year (2021) or comparing Uber/Lfyt ridership to yellow/green cabs. Aside from being a topic of strong personal interest, I also believe that this project would expand on the knowledge I learned last semester from ES 660, Network Science, in analyzing network behavior in a real-world scenario. Additionally, this project would allow me to work with graphical data and plotting data on a map - a Python skill that I need to further refine. ","Please make sure you will submit the actual dataset you will use in your project along with the code and the report.
+
+We need the dataset to test your code."
+"The data uploaded to the TLC's website comes in a PARQUET file format, which I can convert and save as CSV for your review. There are thousands of records per file so it might not be ideal to view in a CSV format in Excel. However, I will make sure my code references the URL of the open source file directly so there is no need to download additional data... ","Are you going to work directly with the PARQUET format in your code?
+If yes, the URL would work.
+If you convert it in a csv and use it, then we need it/at least a subset of it to run your code."
+"Yes, I intend on working with the PARQUET file format directly from the TLC's website. Pandas supports the fastparquet engine for reading PARQUET files directly into a DataFrame object. I will provide the URL(s) I use to obtain the data for my project.  ",OK!
+"I am Samradnyi Mukesh Deshmukh - with the changed weather I have been sick since 2/3 days and under medication and been unable to complete the assignment . I believed that I would be able to complete it but unfortunately I am not able to - I am halfway with the assignment . 
+I request you to grant me extension for one day, I will submit the assignment tomorrow by 11:00 pm without fail. ",OK for the extension.
+"Since we do not have a class today (EM 624), I would highly appreciate it if you could extend the deadline for exercise 8 to after the Thanksgiving holiday (next week, Tuesday, November 29th).","I think today you still have 624 since we have 626 yesterday, but I am not sure, did you check with professor Carlo?"
+"Thank you for your email. I can not see the 624 on my Canvas calendar for today, and there is only an exercise for today. I am not sure if we have a class today and I did not ask Carlo. However, I am doing my best to complete it before the deadline.",Did you get the notification?
+Can I please get an extension for a day or two?? ,"OK, You have 1 day extension."
+"I am Gayatri Kondapavuluri, from EM 624.I am here to ask you about the final presentation, I have my sister's wedding on the 4th of December I am planning on leaving on the 1st of December, I am here to ask you for permission before booking my tickets, and I am planning on giving my presentation online just in case I am chosen for the presentation as you mentioned in the last class, and want to know if that works with you and depending on your decision I will plan my trip to India.",Not a problem giving the presentation online.
+"EX08 - Question # 8 & # 9
+Does this mean if there are 10 headlines, there should be 10 sentiment analysis?",yes
+"EX08 - Question # 8 & # 9
+Thank you Shiyu,
+
+That was super helpful.
+
+I also had question regarding Q#7.
+
+7. Looping into the list of clean headlines, print the headlines with the highest and lowest sentiment (3
+each)
+
+From the class, when Professor went over the sentiment, he referred to sentiment analysis which resulted in positive, neutral, and negative analysis. I think I'm not understanding what highest and lowest sentiment refer to. Is the question asking about the top 3 and least 3 common words?","I think the following link would be more helpful:
+https://www.geeksforgeeks.org/python-sentiment-analysis-using-vader/ Plus, the report is part of the HW, which I could not help you with that."
+"EX08 - Question # 8 & # 9
+
+Could you please elaborate on question #8 & #9?
+For #8 Question asks: 'Consider bigrams 2 words appearing together more than 2 times in the whole text.'
+For example, do you mean: ('apple', 'apple') or [('apple', 'orange'),('apple', 'orange')] ?
+
+For # 9 Question asks: 'Merge the list of single words with the list of bigrams'
+Does this mean the result should look something like:
+[('apple', 'orange'),....,('apple_orange')] ?","8.Extract bigram, generating a separate list. Consider bigrams 2 words appearing together more than 2
+times in the whole text. Bigrams will be like “word1_word2”, meaning you will create a new string
+composed by the 2 words, separated by an underscore (“_”)
+9. 9. Merge the list of single words with the list of bigrams
+
+refer to question 8:
+for example the sentence: ' I love to eat apple', 'I also love to eat orange':
+bi gram for first sententce: I love, love to, to eat, eat apple.
+bigram for second sentence: I also, also love, love to, to eat, eat orange.
+among the bigrams, 'love to', 'to eat' appear twice, other bigram appear once. 
+
+refer to question 9:
+just merge single word with bigram list as one list "
+" I am current student of class EM-624 WS, who recently by mistake submitted my practice file and after the due time I submit the original file with the report so please consider this submission as normal submission not as a late submission and also professor consider my last file which I submit.","Not a problem, Harsh."
+"EX07 Issue
+Ok, do you know how I can locate or change what environment my script is in?","You may find the path in the pycharm preference, if you use the pycharm as your IDE.
+Details please refer to this tutorial:
+https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-reloading-interpreter-paths.html"
+"
+I have a question regarding Exercise 7 for EM 624.
+
+I have installed both wordcloud and vaderSentiment using pip install, however, when I import both in my code, I get an error message saying ""ModuleNotFoundError"".
+
+Do you know why I am still getting an error message despite having both libraries installed?","Maybe you can check the interpreter and the console environment of your HW7 script, if the script is not in the environment that installed the package, you will get this type of error."
+I am not feeling well professor due to my sinus issues and have been sick for almost a week and have not been able to give my 100% for exercise -7 just wanted to request you an extension for a day so that I can submit it by 12 PM tomorrow. Hope you understand and accept my request.,"Please make sure you will not use the solution I will present this evening.
+
+Get well soon and join the online session."
+"I am emailing you inquiring if I could receive an extension on Homework EX07. I am about half way done with the assignment but struggling some. And with my other course loads I am not confident that I will be able to submit on time Tuesday. All of the past assignments I have been able to finish on time but I am struggling a bit on this one.
+
+If an extension is not allowed I completely understand, however I could submit a much better version of the assignment if given the opportunity to submit Thursday.",Please make sure you will not use the solution I’ll present in class tomorrow.
+"Can we use nltk module to solve the problem with combination of wordcloud, vader and matplotlib.
+Your earliest reply would be very helpful.","Yes, you can use nltk."
+I had submitted my EX01 assignment on time just the file uploaded was in incorrect format which I quickly updated as sson as you commented. Please look into the matter and remove the late submission penalty from my EX 01.,"I revised the grade, taking 1 point off, for the wrong type of submission (99%)."
+"I want to display all the charts created in a pycharm on the screen at once. Currently, whenever I use plt.show() after the chart or graph, the chart appears on the screen and I have to close it in order to display the next one. I searched on stack overflow, seaborn, Matplotlib docs and geeks for geeks but could not find relevant answer for the same. 
+Can you please assist me in the same? Since in one of my previous assignments I could not display the bar plot and pie chart both on the screen simultaneously without using subplots. Like in Jupyter Notebook, all the charts remain on the screen without the need to close one to display the next one.","Matplotlib is not very “smart”.
+Once you use a plt.show, you need to clear the figure using plt.clf() before generating/showing the next."
+Hope you're doing good. Firstly I want to thank you for the prompt response to all queries. I have a doubt about exercise 06. There are a lot of n/a values in the dataset. What is to be done of those?,You can just drop them.
+"Bokeh - sample exercise
+For the question below, can you please elaborate?
+
+# Number of underloaded faculty over the years
+# Line Plot
+# Label the x-axis with the years
+# Label the y-axis ""ID""
+
+The way I understood is finding total number of underloaded faulty over the 4 years like below and plot a line graph. But this way, I don't see how ""ID"" comes into play.
+ay underload
+19-20 11
+20-21 5
+21-22 8
+22-23 9","All the samples are available on Canvas, including the line plot (sample1, 2, 3).
+
+Please let us know if additional help is needed."
+"I was finding the courses per each program in which column ID defines faculty id and program defines programs offered. If courses are to calculate from Load, column then two faculties might take same course in single academic year.","1): Per each Academic Year, there is ""Load"" (number of classes taught by the faculty); ""Target"" (number of classes the faculty was assigned to teach); ""Balance"" (Load - Target).
+
+2):id is the faculty"
+"My midterm exam was graded earlier but a while ago I received an email saying my grade has been changed. Apparently , now I do not see any grade on the Canvas. Can you please look into the same?","We are reviewing all the grades for midterm.
+By the weekend it will be fixed."
+I wanted to ask if our final project for 624 B will be a group project or individual?,Final is individual project.
+"I am a student in EM-624 class and had sent you a message on canvas about the marks on Exercise 2, but I think you do not check canvas frequently so sending you an email. You mentioned .isalpha() and .isdigit() not being check statements in the code but if you input an alphabet or a digit only then will it add to the counter otherwise it will not add to it, so it is a check statement, right? ",.isalpha() and .isdigit() is the boolean statement and only return True or False. You cannot pass any variables in parentheses. 
+" apologize for the last minute notice, but I am feeling under the weather. I just took my temperature and I had a low grade fever. Out of an abundance of caution, and to avoid getting others sick, I will be visiting an urgent care facility this evening to get checked out. As a result, I will be unable to take the midterm exam today. ","We’ll reschedule it.
+Is there any day/time you could not make it?
+We’re taking all the preferences and the day/time will be set based on the preference of the majority.
+There will be only 1 option."

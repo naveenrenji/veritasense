@@ -1,0 +1,4 @@
+newenv
+*.pkl
+*.pyc
+Backend/flask_session/*
