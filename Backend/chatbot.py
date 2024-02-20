@@ -1,12 +1,15 @@
-from stageOne.get_answer import get_answer
+# from stageOne.get_answer import get_answer
+from stageOne.get_context import get_answer
+from stageOne.get_context import init_data
 from stageTwo.SSEmodel import get_SSE_results
-from stageThree.responseGeneratorOpenAI import response_generator
+from stageThree.responseGenfinetuned import response_generator
 from time import time
 
 
 def get_bot_response(query):
     t=time()
-    context = get_answer(query)
+    model, question_embeddings, questions, df = init_data()
+    context = get_answer(query, model, question_embeddings, questions, df)
     # If the response was '', there was no match at stage 1, hence -> stage 2 component
     if context == 'not found':
         context = get_SSE_results(query)  # Implement your model function here
@@ -27,3 +30,4 @@ def get_bot_response(query):
 
 #print(get_bot_response("what version of python are we using in class?"))
 
+get_bot_response("what version of python are we using in class?")

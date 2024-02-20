@@ -29,7 +29,8 @@ def load_model():
 
 conversation_history = []
 
-def response_generator(model, tokenizer, question, context):
+def response_generator(question, context):
+    model, tokenizer = load_model()
     global conversation_history
     
     # Append the new user's question to the conversation history
@@ -64,14 +65,13 @@ def response_generator(model, tokenizer, question, context):
     return response_text
 
 def main():
-    model, tokenizer = load_model()
     print("Model loaded. You can start chatting. Type 'quit' to exit.")
     
     while True:
         question = input("You: ")
         if question.lower() == 'quit':
             break
-        response = response_generator(model, tokenizer, question, "")
+        response = response_generator(question, "")
         print("Bot:", response)
 
 if __name__ == "__main__":
