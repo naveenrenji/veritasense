@@ -64,15 +64,15 @@ def response_generator(question, context):
 
     return response_text
 
-def main():
-    print("Model loaded. You can start chatting. Type 'quit' to exit.")
+# def main():
+#     print("Model loaded. You can start chatting. Type 'quit' to exit.")
     
-    while True:
-        question = input("You: ")
-        if question.lower() == 'quit':
-            break
-        response = response_generator(question, "")
-        print("Bot:", response)
+#     while True:
+#         question = input("You: ")
+#         if question.lower() == 'quit':
+#             break
+#         response = response_generator(question, "")
+#         print("Bot:", response)
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

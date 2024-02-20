@@ -30,4 +30,4 @@ def get_bot_response(query):
 
 #print(get_bot_response("what version of python are we using in class?"))
 
-get_bot_response("what version of python are we using in class?")
+# get_bot_response("what version of python are we using in class?")

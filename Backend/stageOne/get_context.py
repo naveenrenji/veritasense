@@ -54,17 +54,17 @@ def get_answer(query, model, question_embeddings, questions, df):
         print("There was no direct match with existing questions.")
         return 'not found'
 
-# Main function to run the script only for me when I am debugging
-if __name__ == '__main__':
-    model, question_embeddings, questions, df = init_data()
+# # Main function to run the script only for me when I am debugging
+# if __name__ == '__main__':
+#     model, question_embeddings, questions, df = init_data()
 
-    # Example queries
-    example_queries = [
-        "how to install jupyter",
-        "Can I present my code on jupyter notebook for the presentation?",
-        "Can I please have the EM 624 midterm scheduled to a different time as well?",
-        "My outlook isn't working, can I send through canvas?"
-    ]
+#     # Example queries
+#     example_queries = [
+#         "how to install jupyter",
+#         "Can I present my code on jupyter notebook for the presentation?",
+#         "Can I please have the EM 624 midterm scheduled to a different time as well?",
+#         "My outlook isn't working, can I send through canvas?"
+#     ]
 
-    for query in example_queries:
-        get_answer(query, model, question_embeddings, questions, df)
+#     for query in example_queries:
+#         get_answer(query, model, question_embeddings, questions, df)
