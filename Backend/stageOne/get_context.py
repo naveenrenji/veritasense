@@ -13,12 +13,14 @@ def save_obj(obj, name):
 
 def load_obj(name):
     with open(os.path.join(os.path.dirname(__file__), name + '.pkl'), 'rb') as f:
+        print("here")
         return pickle.load(f)
 
 # Function to initialize and prepare data
 def init_data():
     csv_file = os.path.join(os.path.dirname(__file__), "questions_answers.csv")
     df = pd.read_csv(csv_file)
+    print("here")
 
     # model_name = 'sentence-transformers/all-MiniLM-L6-v2'
     # model = SentenceTransformer(model_name)
@@ -30,6 +32,7 @@ def init_data():
     if os.path.exists('questions.pkl') and os.path.exists('question_embeddings.pkl'):
         questions = load_obj('questions')
         question_embeddings = np.array(load_obj('question_embeddings'))
+        print("here")
     else:
         spacy_tokenizer = spacy.load('en_core_web_sm')
         questions = [spacy_tokenizer(question).text for question in df['question']]
@@ -58,17 +61,17 @@ def get_answer(query, model, question_embeddings, questions, df):
         print("There was no direct match with existing questions.")
         return 'not found'
 
-# # Main function to run the script only for me when I am debugging
-# if __name__ == '__main__':
-#     model, question_embeddings, questions, df = init_data()
+# Main function to run the script only for me when I am debugging
+if __name__ == '__main__':
+    model, question_embeddings, questions, df = init_data()
 
-#     # Example queries
-#     example_queries = [
-#         "how to install jupyter",
-#         "Can I present my code on jupyter notebook for the presentation?",
-#         "Can I please have the EM 624 midterm scheduled to a different time as well?",
-#         "My outlook isn't working, can I send through canvas?"
-#     ]
+    # Example queries
+    example_queries = [
+        "how to install jupyter",
+        "Can I present my code on jupyter notebook for the presentation?",
+        "Can I please have the EM 624 midterm scheduled to a different time as well?",
+        "My outlook isn't working, can I send through canvas?"
+    ]
 
-#     for query in example_queries:
-#         get_answer(query, model, question_embeddings, questions, df)
+    for query in example_queries:
+        get_answer(query, model, question_embeddings, questions, df)

@@ -1,18 +1,22 @@
 # from stageOne.get_answer import get_answer
-from stageOne.get_context import get_answer
-from stageOne.get_context import init_data
-from stageTwo.SSEmodel import get_SSE_results
-from stageThree.responseGenfinetuned import response_generator
+from stageOne.getcontext import get_answer
+from stageOne.getcontext import load_data
+from stageTwo.dataloading import get_SSE_results
+from stageTwo.dataloading import load_model_and_data
+# from stageOne.get_context import init_data
+# from stageTwo.SSEmodel import get_SSE_results
+#from stageThree.responseGenfinetuned import response_generator
 from time import time
 
 
 def get_bot_response(query):
     t=time()
-    model, question_embeddings, questions, df = init_data()
+    model, question_embeddings, questions, df = load_data()
     context = get_answer(query, model, question_embeddings, questions, df)
     #If the response was '', there was no match at stage 1, hence -> stage 2 component
     if context == 'not found':
-        context = get_SSE_results(query)  # Implement your model function here
+        model, corpus_sentences, corpus_embeddings = load_model_and_data()
+        context = get_SSE_results(query, model, corpus_sentences, corpus_embeddings)  # Implement your model function here
         print(context) # for debugging only
         pass  # Placeholder for stage 2 component
 

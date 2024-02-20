@@ -1,5 +1,5 @@
 newenv
-*.pkl
+
 *.pyc
 Backend/flask_session/*
 Backend/models/*
