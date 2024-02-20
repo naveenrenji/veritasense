@@ -6,4 +6,11 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+# Download models
+RUN python stageOne/downloadmodel1.py
+RUN python stageTwo/downloadmodel2.py
+RUN python stageThree/downloadmodel3.py
+
+#CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "120", "app:app"]

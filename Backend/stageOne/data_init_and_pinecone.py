@@ -20,9 +20,11 @@ csv_file = os.path.join(os.path.dirname(__file__), "questions_answers.csv")
 df = pd.read_csv(csv_file)
 
 #load model
-model_name = 'sentence-transformers/all-MiniLM-L6-v2'
-model = SentenceTransformer(model_name)
+# model_name = 'sentence-transformers/all-MiniLM-L6-v2'
+# model = SentenceTransformer(model_name)
 
+model_path = './models/all-MiniLM-L6-v2'  
+model = SentenceTransformer(model_path)
 
 # Check if tokenized questions and embeddings already exist
 if os.path.exists('questions.pkl') and os.path.exists('question_embeddings.pkl'):

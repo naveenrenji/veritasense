@@ -3,27 +3,35 @@ from peft import PeftModel, PeftConfig
 from torch import cuda, bfloat16
 
 
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,                         # load the model in 4-bit precision.
-    bnb_4bit_quant_type='nf4',                 # type of quantization to use for 4-bit weights.
-    bnb_4bit_use_double_quant=True,            # use double quantization for 4-bit weights.
-    bnb_4bit_compute_dtype=bfloat16            # compute dtype to use for 4-bit weights.
-)
+# bnb_config = BitsAndBytesConfig(
+#     load_in_4bit=True,                         # load the model in 4-bit precision.
+#     bnb_4bit_quant_type='nf4',                 # type of quantization to use for 4-bit weights.
+#     bnb_4bit_use_double_quant=True,            # use double quantization for 4-bit weights.
+#     bnb_4bit_compute_dtype=bfloat16            # compute dtype to use for 4-bit weights.
+# )
+
+# def load_model():
+#     model_id = 'kings-crown/EM624_QA_Multi'
+#     base_model_id = "meta-llama/Llama-2-13b-chat-hf"
+#     access_token = "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"
+#     base_model = AutoModelForCausalLM.from_pretrained(base_model_id, use_auth_token=access_token)
+#     tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
+#     config = PeftConfig.from_pretrained(model_id, use_auth_token=access_token)
+#     model = AutoModelForCausalLM.from_pretrained(
+#         config.base_model_name_or_path,
+#         return_dict=True,
+#         quantization_config=bnb_config,
+#         device_map="auto",
+#         trust_remote_code=True
+#     )
+#     return model, tokenizer
 
 def load_model():
-    model_id = 'kings-crown/EM624_QA_Multi'
-    base_model_id = "meta-llama/Llama-2-13b-chat-hf"
-    access_token = "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"
-    base_model = AutoModelForCausalLM.from_pretrained(base_model_id, use_auth_token=access_token)
-    tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
-    config = PeftConfig.from_pretrained(model_id, use_auth_token=access_token)
-    model = AutoModelForCausalLM.from_pretrained(
-        config.base_model_name_or_path,
-        return_dict=True,
-        quantization_config=bnb_config,
-        device_map="auto",
-        trust_remote_code=True
-    )
+    model_path = './models/kings-crown/EM624_QA_Multi'  #  finetuned model
+    tokenizer_path = './models/Llama-2-13b-chat-hf-tokenizer'  #  tokenizer 
+
+    model = AutoModelForCausalLM.from_pretrained(model_path)
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
     return model, tokenizer
 
 

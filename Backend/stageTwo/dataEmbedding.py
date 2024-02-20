@@ -8,8 +8,12 @@ from time import time
 t = time()
 
 # Load the sentence transformer model
-model_name = 'sentence-transformers/all-roberta-large-v1'
-model = SentenceTransformer(model_name)
+# model_name = 'sentence-transformers/all-roberta-large-v1'
+# model = SentenceTransformer(model_name)
+
+model_path = './models/all-roberta-large-v1' 
+model = SentenceTransformer(model_path)
+
 
 # Function to save object
 def save_obj(obj, name):

@@ -20,8 +20,12 @@ def init_data():
     csv_file = os.path.join(os.path.dirname(__file__), "questions_answers.csv")
     df = pd.read_csv(csv_file)
 
-    model_name = 'sentence-transformers/all-MiniLM-L6-v2'
-    model = SentenceTransformer(model_name)
+    # model_name = 'sentence-transformers/all-MiniLM-L6-v2'
+    # model = SentenceTransformer(model_name)
+
+    model_path = './models/all-MiniLM-L6-v2'  
+    model = SentenceTransformer(model_path)
+
 
     if os.path.exists('questions.pkl') and os.path.exists('question_embeddings.pkl'):
         questions = load_obj('questions')
@@ -48,7 +52,7 @@ def get_answer(query, model, question_embeddings, questions, df):
     if similarities[closest_idx] > 0.5:
         matched_question = questions[closest_idx]
         answer = df['answer'][closest_idx]
-        print(f"Query: {query} || Matched question: {matched_question}  good work Naveen, keep it up!|| Answer: {answer} ||")
+        print(f"Query: {query} || Matched question: {matched_question}   navs || Answer: {answer} ||")
         return answer
     else:
         print("There was no direct match with existing questions.")
