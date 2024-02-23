@@ -1,12 +1,15 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from peft import PeftModel, PeftConfig
 from torch import cuda, bfloat16
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 
 bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,                         # load the model in 4-bit precision.
-    bnb_4bit_quant_type='nf4',                 # type of quantization to use for 4-bit weights.
-    bnb_4bit_use_double_quant=True,            # use double quantization for 4-bit weights.
-    bnb_4bit_compute_dtype=bfloat16            # compute dtype to use for 4-bit weights.
+    load_in_8bit=True,                         # load the model in 4-bit precision.
+    bnb_8bit_quant_type='nf4',                 # type of quantization to use for 4-bit weights.
+    bnb_8bit_use_double_quant=True,            # use double quantization for 4-bit weights.
+    bnb_8bit_compute_dtype=bfloat16            # compute dtype to use for 4-bit weights.
 )
 # Make sure to save the model and tokenizer using .save_pretrained()
 
