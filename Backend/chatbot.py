@@ -25,9 +25,9 @@ def get_bot_response(query):
     if context == 'not found':
         response = "Sorry, I do not have the answer to that, please ask me another question."
     else: 
-        #responseModel, responseTokenizer = load_model()
-        #response = response_generator(query, context, responseModel, responseTokenizer)
-        response = "Temporary response data -- " + context
+        responseModel, responseTokenizer = load_model()
+        response = response_generator(query, context, responseModel, responseTokenizer)
+        #response = "Temporary response data -- " + context
     print('Total time:', round(time() - t, 4), 'seconds')
     return response
 
