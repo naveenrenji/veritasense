@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.8.10-slim
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ RUN pip install -r requirements.txt
 # Download models
 RUN python stageOne/downloadmodel1.py
 RUN python stageTwo/downloadmodel2.py
-#RUN python stageThree/downloadmodel3.py
+RUN python stageThree/downloadmodel3.py
 
 #Prepare and save embeddings
 RUN python stageOne/prepareData.py
