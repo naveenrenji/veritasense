@@ -6,6 +6,7 @@ from stageTwo.dataloading import load_model_and_data
 # from stageOne.get_context import init_data
 # from stageTwo.SSEmodel import get_SSE_results
 from stageThree.responseGenfinetuned import response_generator
+from stageThree.responseGenfinetuned import load_model
 from time import time
 
 
@@ -15,8 +16,8 @@ def get_bot_response(query):
     context = get_answer(query, model, question_embeddings, questions, df)
     #If the response was '', there was no match at stage 1, hence -> stage 2 component
     if context == 'not found':
-        model, corpus_sentences, corpus_embeddings = load_model_and_data()
-        context = get_SSE_results(query, model, corpus_sentences, corpus_embeddings)  # Implement your model function here
+        sseModel, corpus_sentences, corpus_embeddings = load_model_and_data()
+        context = get_SSE_results(query, sseModel, corpus_sentences, corpus_embeddings)  # Implement your model function here
         print(context) # for debugging only
         pass  # Placeholder for stage 2 component
 
@@ -24,7 +25,8 @@ def get_bot_response(query):
     if context == 'not found':
         response = "Sorry, I do not have the answer to that, please ask me another question."
     else: 
-        response = response_generator(query, context)
+        responseModel, responseTokenizer = load_model()
+        response = response_generator(query, context, responseModel, responseTokenizer)
         #response = "Temporary response data -- " + context
     print('Total time:', round(time() - t, 4), 'seconds')
     return response
