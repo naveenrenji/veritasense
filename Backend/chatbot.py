@@ -5,7 +5,7 @@ from stageTwo.dataloading import get_SSE_results
 from stageTwo.dataloading import load_model_and_data
 # from stageOne.get_context import init_data
 # from stageTwo.SSEmodel import get_SSE_results
-#from stageThree.responseGenfinetuned import response_generator
+from stageThree.responseGenfinetuned import response_generator
 from time import time
 
 
@@ -24,8 +24,8 @@ def get_bot_response(query):
     if context == 'not found':
         response = "Sorry, I do not have the answer to that, please ask me another question."
     else: 
-        #response = response_generator(query, context)
-        response = "Temporary response data -- " + context
+        response = response_generator(query, context)
+        #response = "Temporary response data -- " + context
     print('Total time:', round(time() - t, 4), 'seconds')
     return response
 
