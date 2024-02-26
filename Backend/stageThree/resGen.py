@@ -1,11 +1,26 @@
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from peft import PeftModel, PeftConfig
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from torch import cuda, bfloat16
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # Load the PEFT-configured LLaMa model
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,                         # load the model in 4-bit precision.
+    bnb_4bit_quant_type='nf4',                 # type of quantization to use for 4-bit weights.
+    bnb_4bit_use_double_quant=True,            # use double quantization for 4-bit weights.
+    bnb_4bit_compute_dtype=bfloat16            # compute dtype to use for 4-bit weights.
+)
 access_token = "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"
 config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full",use_auth_token=access_token)
 base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=access_token)
-model = PeftModel.from_pretrained(base_model, "kings-crown/EM624_QA_Full", use_auth_token=access_token, device_map="auto",)
+model = AutoModelForCausalLM.from_pretrained(
+        config.base_model_name_or_path,
+        return_dict=True,
+        quantization_config=bnb_config,
+        device_map="auto",
+        trust_remote_code=True
+    )
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=access_token, device_map="auto",)
 
 def response_generator(question, context):
