@@ -40,9 +40,12 @@ def load_model():
 conversation_history = []
 
 def response_generator(question, context):
+    print("started response generation function")
+
     model, tokenizer = load_model()
     global conversation_history
     
+    print("loaded fine tuned model")
     # Append the new user's question to the conversation history
     conversation_history.append({
         "role": "user",
@@ -71,7 +74,7 @@ def response_generator(question, context):
     # Truncate the conversation history if necessary
     if len(conversation_history) > 10:
         conversation_history = conversation_history[-10:]
-
+    print("completed response generation")
     return response_text
 
 # def main():
