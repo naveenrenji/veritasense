@@ -7,7 +7,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # Define your Hugging Face access token here
-access_token = "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"
+access_token = "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"
 
 # Configure the BitsAndBytes quantization
 bnb_config = BitsAndBytesConfig(
