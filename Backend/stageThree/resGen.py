@@ -2,26 +2,39 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from peft import PeftModel, PeftConfig
 from torch import cuda, bfloat16
 import os
+
+# Set environment variable to reduce TensorFlow logging
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-# Load the PEFT-configured LLaMa model
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,                         # load the model in 4-bit precision.
-    bnb_4bit_quant_type='nf4',                 # type of quantization to use for 4-bit weights.
-    bnb_4bit_use_double_quant=True,            # use double quantization for 4-bit weights.
-    bnb_4bit_compute_dtype=bfloat16            # compute dtype to use for 4-bit weights.
-)
+# Define your Hugging Face access token here
 access_token = "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"
-config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full",use_auth_token=access_token)
+
+# Configure the BitsAndBytes quantization
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,                         # Load the model in 4-bit precision
+    bnb_4bit_quant_type='nf4',                 # Type of quantization for 4-bit weights
+    bnb_4bit_use_double_quant=True,            # Use double quantization for 4-bit weights
+    bnb_4bit_compute_dtype=bfloat16            # Compute dtype for 4-bit weights
+)
+
+# Load the PEFT-configured model configuration
+config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full", use_auth_token=access_token)
+
+# Load the base model
 base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=access_token)
-model = AutoModelForCausalLM.from_pretrained(
-        config.base_model_name_or_path,
-        return_dict=True,
-        quantization_config=bnb_config,
-        device_map="auto",
-        trust_remote_code=True
-    )
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=access_token, device_map="auto",)
+
+# Load the quantized model with the specified configuration
+model = PeftModel.from_pretrained(
+    config.base_model_name_or_path,
+    config=config,
+    quantization_config=bnb_config,
+    use_auth_token=access_token
+)
+
+# Load the tokenizer
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=access_token)
+
+# Your existing code for the response_generator function and main logic
 
 def response_generator(question, context):
     print("started generation")
