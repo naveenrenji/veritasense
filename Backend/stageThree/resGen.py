@@ -31,6 +31,8 @@ tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_a
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token, device_map="auto")
 
 def response_generator(question, context):
+    print("started generation")
+
     global conversation_history
 
     # Append the new user's question to the conversation history
@@ -65,9 +67,11 @@ def response_generator(question, context):
 
 
 def main():
+    print("inside main")
     while True:
-        userinput= input("User: ")
-        if userinput == "stop":
+        userinput = input("User: ")
+        if userinput.lower() == "stop":
             break
         else:
-            print(response_generator(input,"my name is naveen, I am from bahrain, i love shopping and playing football. My hobbies include reading and dancing"))
+            response = response_generator(userinput, "My name is Naveen, I am from Bahrain, I love shopping and playing football. My hobbies include reading and dancing.")
+            print(f"Assistant: {response}")
