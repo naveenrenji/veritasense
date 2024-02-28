@@ -1,4 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
+import os
+os.environ['HF_HUB_OFFLINE']=1
 
 def response_generator(question, context):
     auth_token = "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"
