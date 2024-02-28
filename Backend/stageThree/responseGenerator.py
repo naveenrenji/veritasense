@@ -15,4 +15,4 @@ def response_generator(question, context):
     # Moving tensors to GPU
     input_ids = tokenizer(combined_information, return_tensors="pt").to("cuda")
     response = model.generate(**input_ids, max_new_tokens=500)
-    return (tokenizer.decode(response[0]))
+    return (tokenizer.decode(response[0], num_return_sequences=1, skip_special_tokens=True))

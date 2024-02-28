@@ -7,37 +7,26 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # Define your Hugging Face access token here
-access_token = "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"
+auth_token = "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"
 
-# Configure the BitsAndBytes quantization
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,                         # Load the model in 4-bit precision
-    bnb_4bit_quant_type='nf4',                 # Type of quantization for 4-bit weights
-    bnb_4bit_use_double_quant=True,            # Use double quantization for 4-bit weights
-    bnb_4bit_compute_dtype=bfloat16            # Compute dtype for 4-bit weights
-)
+# # Configure the BitsAndBytes quantization
+# bnb_config = BitsAndBytesConfig(
+#     load_in_4bit=True,                         # Load the model in 4-bit precision
+#     bnb_4bit_quant_type='nf4',                 # Type of quantization for 4-bit weights
+#     bnb_4bit_use_double_quant=True,            # Use double quantization for 4-bit weights
+#     bnb_4bit_compute_dtype=bfloat16            # Compute dtype for 4-bit weights
+# )
 
-# Load the PEFT-configured model configuration
-config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full", use_auth_token=access_token)
+from peft import PeftModel, PeftConfig
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# Load the base model
-base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=access_token)
-
-# Load the quantized model with the specified configuration
-model = PeftModel.from_pretrained(
-    config.base_model_name_or_path,
-    config=config,
-    quantization_config=bnb_config,
-    use_auth_token=access_token
-)
-
-# Load the tokenizer
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=access_token)
-
-# Your existing code for the response_generator function and main logic
+# Load the PEFT-configured LLaMa model
+config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full", use_auth_token=auth_token)
+base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=auth_token)
+model = PeftModel.from_pretrained(base_model, "kings-crown/EM624_QA_Full", use_auth_token=auth_token)
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf")
 
 def response_generator(question, context):
-    print("started generation")
     global conversation_history
 
     # Append the new user's question to the conversation history
@@ -70,10 +59,11 @@ def response_generator(question, context):
 
     return response_text
 
+
 def main():
     while True:
         userinput= input("User: ")
         if userinput == "stop":
             break
         else:
-            print(response_generator(response_generator,"my name is naveen"))
+            print(response_generator(input,"my name is naveen, I am from bahrain, i love shopping and playing football. My hobbies include reading and dancing"))
