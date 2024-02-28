@@ -29,6 +29,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 auth_token = "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"
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token)
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token, device_map="auto")
+conversation_history = []
 
 def response_generator(question, context):
     print("started generation")
@@ -49,7 +50,7 @@ def response_generator(question, context):
     formatted_input = "\n".join([f"{exchange['role']}: {exchange['content']}" for exchange in conversation_history])
 
     # Generate a response using the LLaMa model
-    inputs = tokenizer.encode(formatted_input, return_tensors="pt")
+    inputs = tokenizer.encode(formatted_input, return_tensors="pt").to("cuda")
     output = model.generate(inputs, max_length=512, num_return_sequences=1, temperature=1.0)
     response_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
@@ -75,3 +76,5 @@ def main():
         else:
             response = response_generator(userinput, "My name is Naveen, I am from Bahrain, I love shopping and playing football. My hobbies include reading and dancing.")
             print(f"Assistant: {response}")
+
+main()
