@@ -17,8 +17,7 @@
 # #     bnb_4bit_compute_dtype=bfloat16            # Compute dtype for 4-bit weights
 # # )
 
-from peft import PeftModel, PeftConfig
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Load the PEFT-configured LLaMa model
 # config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full", use_auth_token=auth_token)
