@@ -8,7 +8,7 @@ auth_token = "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"
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token)
-model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token)
+model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token, device_map="auto")
 # tokenizer = AutoTokenizer.from_pretrained("google/gemma-2b-it")
 
 # # CPU Enabled uncomment below 👇🏽
