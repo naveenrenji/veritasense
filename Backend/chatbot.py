@@ -7,32 +7,34 @@ from stageThree.responseGenerator import response_generator
 from time import time
 
 
-# Initialize global variables to None
-stageOneModel = None
-question_embeddings = None
-questions = None
-df = None
-stageTwoModel = None
-corpus_sentences = None
-corpus_embeddings = None
-loadedStageOneModel = False
-loadedStageTwoModel = False
+# # Initialize global variables to None
+# stageOneModel = None
+# question_embeddings = None
+# questions = None
+# df = None
+# stageTwoModel = None
+# corpus_sentences = None
+# corpus_embeddings = None
+# loadedStageOneModel = False
+# loadedStageTwoModel = False
 
 def get_bot_response(query):
     print("started")
     t=time()
-    # Load data for stage one only if it hasn't been loaded before
-    if loadedStageOneModel is False:
-        stageOneModel, question_embeddings, questions, df = load_data()
-        loadedStageOneModel = True
+    # # Load data for stage one only if it hasn't been loaded before
+    # if loadedStageOneModel is False:
+    #     stageOneModel, question_embeddings, questions, df = load_data()
+    #     loadedStageOneModel = True
+    stageOneModel, question_embeddings, questions, df = load_data()
     context = get_answer(query, stageOneModel, question_embeddings, questions, df)
     print("stage 1 done")
 
     # If the response was '', there was no match at stage 1, hence -> stage 2 component
     if context == 'not found':
-        if loadedStageTwoModel is False:
-            stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
-            loadedStageTwoModel = True
+        # if loadedStageTwoModel is False:
+        #     stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
+        #     loadedStageTwoModel = True
+        stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
         context = get_SSE_results(query, stageTwoModel, corpus_sentences, corpus_embeddings)  # Implement your model function here
         print(context) # for debugging only
         pass  # Placeholder for stage 2 component
