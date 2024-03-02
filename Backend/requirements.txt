@@ -26,7 +26,7 @@ Flask-PyMongo==2.3.0
 Flask-Session==0.6.0
 frozenlist==1.4.0
 fsspec==2023.9.2
-huggingface-hub==0.17.3
+huggingface-hub==0.21.1
 idna==3.4
 importlib-metadata==6.8.0
 itsdangerous==2.1.2
@@ -75,11 +75,11 @@ srsly==2.4.8
 sympy==1.12
 thinc==8.1.12
 threadpoolctl==3.2.0
-tokenizers==0.13.3
+tokenizers==0.15.2
 torch==2.0.1
 torchvision==0.15.2
 tqdm==4.66.1
-transformers==4.29.2
+transformers==4.38.1
 typer==0.9.0
 typing_extensions==4.8.0
 tzdata==2023.3
@@ -88,4 +88,3 @@ wasabi==1.1.2
 Werkzeug==2.3.7
 yarl==1.9.2
 zipp==3.17.0
-gunicorn

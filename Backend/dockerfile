@@ -8,12 +8,12 @@ RUN pip install -r requirements.txt
 
 # Download models
 RUN python stageOne/downloadmodel1.py
-#RUN python stageTwo/downloadmodel2.py
+RUN python stageTwo/downloadmodel2.py
 # RUN python stageThree/downloadmodel3.py
 
 #Prepare and save embeddings
 RUN python stageOne/prepareData.py
-#RUN python stageTwo/prepare_corpus_data.py
+RUN python stageTwo/prepare_corpus_data.py
 
 #CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 
