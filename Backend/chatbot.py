@@ -15,19 +15,23 @@ df = None
 stageTwoModel = None
 corpus_sentences = None
 corpus_embeddings = None
+loadedStageOneModel = False
+loadedStageTwoModel = False
 
 def get_bot_response(query):
+    loaded = F
     print("started")
     t=time()
     # Load data for stage one only if it hasn't been loaded before
-    if stageOneModel is None or question_embeddings is None or questions is None or df is None:
+    if loadedStageOneModel is False:
         stageOneModel, question_embeddings, questions, df = load_data()
+        loadedStageOneModel = True
     context = get_answer(query, stageOneModel, question_embeddings, questions, df)
     print("stage 1 done")
 
     # If the response was '', there was no match at stage 1, hence -> stage 2 component
     if context == 'not found':
-        if stageTwoModel is None or corpus_sentences is None or corpus_embeddings is None:
+        if loadedStageTwoModel is False:
             stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
         context = get_SSE_results(query, stageTwoModel, corpus_sentences, corpus_embeddings)  # Implement your model function here
         print(context) # for debugging only
