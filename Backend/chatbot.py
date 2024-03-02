@@ -19,7 +19,6 @@ loadedStageOneModel = False
 loadedStageTwoModel = False
 
 def get_bot_response(query):
-    loaded = F
     print("started")
     t=time()
     # Load data for stage one only if it hasn't been loaded before
@@ -33,6 +32,7 @@ def get_bot_response(query):
     if context == 'not found':
         if loadedStageTwoModel is False:
             stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
+            loadedStageTwoModel = True
         context = get_SSE_results(query, stageTwoModel, corpus_sentences, corpus_embeddings)  # Implement your model function here
         print(context) # for debugging only
         pass  # Placeholder for stage 2 component
