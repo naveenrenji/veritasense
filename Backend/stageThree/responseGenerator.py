@@ -20,14 +20,14 @@ def response_generator(question, context):
     return (tokenizer.decode(response[0], num_return_sequences=1, skip_special_tokens=True))
 
 
-# def main():
-#     print("inside main")
-#     while True:
-#         userinput = input("User: ")
-#         if userinput.lower() == "stop":
-#             break
-#         else:
-#             response = response_generator(userinput, "My name is Naveen, I am from Bahrain, I love shopping and playing football. My hobbies include reading and dancing.")
-#             print(f"Assistant: {response}")
+def main():
+    print("inside main")
+    while True:
+        userinput = input("User: ")
+        if userinput.lower() == "stop":
+            break
+        else:
+            response = response_generator(userinput, "My name is Naveen, I am from Bahrain, I love shopping and playing football. My hobbies include reading and dancing.")
+            print(f"Assistant: {response}")
 
-# main()
+main()

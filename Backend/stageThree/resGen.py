@@ -1,33 +1,30 @@
-# from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
-# from peft import PeftModel, PeftConfig
-# from torch import cuda, bfloat16
-# import os
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+from peft import PeftModel, PeftConfig
+from torch import cuda, bfloat16
+import os
 
 # # Set environment variable to reduce TensorFlow logging
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # # Define your Hugging Face access token here
-# auth_token = "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"
+auth_token = "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"
 
-# # # Configure the BitsAndBytes quantization
-# # bnb_config = BitsAndBytesConfig(
-# #     load_in_4bit=True,                         # Load the model in 4-bit precision
-# #     bnb_4bit_quant_type='nf4',                 # Type of quantization for 4-bit weights
-# #     bnb_4bit_use_double_quant=True,            # Use double quantization for 4-bit weights
-# #     bnb_4bit_compute_dtype=bfloat16            # Compute dtype for 4-bit weights
-# # )
-
-from transformers import AutoTokenizer, AutoModelForCausalLM
+# Configure the BitsAndBytes quantization
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,                         # Load the model in 4-bit precision
+    bnb_4bit_quant_type='nf4',                 # Type of quantization for 4-bit weights
+    bnb_4bit_use_double_quant=True,            # Use double quantization for 4-bit weights
+    bnb_4bit_compute_dtype=bfloat16            # Compute dtype for 4-bit weights
+)
 
 # Load the PEFT-configured LLaMa model
-# config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full", use_auth_token=auth_token)
-# base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=auth_token)
-# model = PeftModel.from_pretrained(base_model, "kings-crown/EM624_QA_Full", use_auth_token=auth_token)
-# tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf")
+config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full", use_auth_token=auth_token)
+base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=auth_token)
+model = PeftModel.from_pretrained(base_model, "kings-crown/EM624_QA_Full", use_auth_token=auth_token)
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf")
 
-auth_token = "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"
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token)
-model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token, device_map="auto")
+# tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token)
+# model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token, device_map="auto")
 conversation_history = []
 
 def response_generator(question, context):
