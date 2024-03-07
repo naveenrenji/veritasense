@@ -20,9 +20,10 @@ bnb_config = BitsAndBytesConfig(
 )
 
 # Load the PEFT-configured LLaMa model
-config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full", use_auth_token=auth_token)
-base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-chat-hf", use_auth_token=auth_token, device_map="auto",)
-model = PeftModel.from_pretrained(base_model, "kings-crown/EM624_QA_Full", use_auth_token=auth_token, device_map="auto",)
+config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full", token=auth_token)
+base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-2-13b-chat-hf", token=auth_token, device_map="auto",)
+model = PeftModel.from_pretrained(base_model, "kings-crown/EM624_QA_Full", token=auth_token, device_map="auto",)
+model = model.to("cuda")
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf")
 
 # tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-chat-hf", use_auth_token=auth_token)
