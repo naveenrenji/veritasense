@@ -35,7 +35,7 @@ def response_generator(question, context, auth_token="your_auth_token_here"):
     generator = setup_model(auth_token)
     
     # Format the prompt with the question and context
-    prompt = f"Question: {question}\nContext: {context}"
+    prompt = f"Respond to this Question based on the provided context mainly, respond with just your answer: {question} \nContext to use : {context}"
     
     # Generate the response
     res = generator(prompt)
