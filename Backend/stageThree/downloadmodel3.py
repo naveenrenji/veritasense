@@ -11,7 +11,7 @@ model_id = 'meta-llama/Llama-2-7b-chat-hf'
 login(auth_token)
 
 # Model configuration
-model_config = AutoConfig.from_pretrained(model_id, use_auth_token=auth_token)
+model_config = AutoConfig.from_pretrained(model_id, token=auth_token)
 
 # Set quantization configuration to load large model with less GPU memory
 bnb_config = transformers.BitsAndBytesConfig(
