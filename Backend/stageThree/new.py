@@ -1,6 +1,6 @@
 from torch import cuda, bfloat16
 import transformers
-from transformers import StoppingCriteria, StoppingCriteriaList
+from transformers import StoppingCriteria, StoppingCriteriaList, pipeline
 
 from huggingface_hub import login
 import logging
@@ -52,33 +52,37 @@ tokenizer = transformers.AutoTokenizer.from_pretrained(
 )
 
 
-stop_list = ['\nHuman:', '\n```\n', '\nSpeaker:']
-
-stop_token_ids = [tokenizer(x)['input_ids'] for x in stop_list]
-stop_token_ids = [torch.LongTensor(x).to(device) for x in stop_token_ids]
-
-# define custom stopping criteria object
+# Define custom stopping criteria
 class StopOnTokens(StoppingCriteria):
+    def __init__(self, stop_token_ids):
+        self.stop_token_ids = stop_token_ids
+
     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
-        for stop_ids in stop_token_ids:
+        for stop_ids in self.stop_token_ids:
             if torch.eq(input_ids[0][-len(stop_ids):], stop_ids).all():
                 return True
         return False
 
-stopping_criteria = StoppingCriteriaList([StopOnTokens()])
+# Generate text function
+def generate_text(question, context):
+    stop_list = ['\nHuman:', '\n```\n', '\nSpeaker:']
+    stop_token_ids = [tokenizer(x)['input_ids'] for x in stop_list]
+    stop_token_ids = [torch.tensor(x, dtype=torch.long) for x in stop_token_ids]
 
-generate_text = transformers.pipeline(
-    model=model, 
-    tokenizer=tokenizer,
-    return_full_text=True,  # langchain expects the full text
-    task='text-generation',
-    # we pass model parameters here too
-    stopping_criteria=stopping_criteria,  # without this model rambles during chat
-    temperature=0.1,  # 'randomness' of outputs, 0.0 is the min and 1.0 the max
-    max_new_tokens=512,  # max number of tokens to generate in the output
-    repetition_penalty=1.1  # without this output begins repeating
-)
+    stopping_criteria = StoppingCriteriaList([StopOnTokens(stop_token_ids)])
 
+    text_generator = pipeline(
+        model=model,
+        tokenizer=tokenizer,
+        task='text-generation',
+        stopping_criteria=stopping_criteria,
+        temperature=0.1,
+        max_new_tokens=512,
+        repetition_penalty=1.1
+    )
 
-res = generate_text("Explain me the difference between Data Lakehouse and Data Warehouse.")
-print(res[0]["generated_text"])
+    res = text_generator(f"Question: {question}\nContext: {context}. now respond-")
+    return res[0]["generated_text"]
+
+result = generate_text("Explain the difference between Data Lakehouse and Data Warehouse.")
+print(result)
