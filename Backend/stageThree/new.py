@@ -84,5 +84,5 @@ def generate_text(question, context):
     res = text_generator(f"Question: {question}\nContext: {context}. now respond-")
     return res[0]["generated_text"]
 
-result = generate_text("Explain the difference between Data Lakehouse and Data Warehouse.")
+result = generate_text("Explain the difference between Data Lakehouse and Data Warehouse.", "Cloud Data")
 print(result)
