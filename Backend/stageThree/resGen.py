@@ -50,8 +50,8 @@ def response_generator(question, context):
     formatted_input = "\n".join([f"{exchange['role']}: {exchange['content']}" for exchange in conversation_history])
 
     # Generate a response using the LLaMa model
-    inputs = tokenizer.encode(formatted_input, return_tensors="pt").to("cuda")
-    output = model.generate(inputs, max_length=512, num_return_sequences=1, temperature=1.0)
+    inputs = tokenizer.encode(formatted_input, return_tensors="pt", max_length=256, truncation=True).to("cuda")
+    output = model.generate(inputs, max_length=256, num_return_sequences=1, temperature=1.0)
     response_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
     # Append the model's response to the conversation history

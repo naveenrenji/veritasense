@@ -17,7 +17,7 @@ bnb_config = BitsAndBytesConfig(
 def load_model():
     
     model_id = 'kings-crown/EM624_QA_Full'
-    base_model_id = "meta-llama/Llama-2-7b-chat-hf"
+    base_model_id = "meta-llama/Llama-2-13b-chat-hf"
     access_token = "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"
     login(access_token)
     base_model = AutoModelForCausalLM.from_pretrained(base_model_id, token=access_token)
@@ -66,7 +66,7 @@ def response_generator(question, context):
     # Generate a response using the model
     inputs = tokenizer.encode(formatted_input, return_tensors="pt")
     inputs = inputs.to(model.device)
-    output = model.generate(inputs, max_length=512, num_return_sequences=1, temperature=1)
+    output = model.generate(inputs, max_length=256, num_return_sequences=1, temperature=1)
     response_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
     # Append the model's response to the conversation history
