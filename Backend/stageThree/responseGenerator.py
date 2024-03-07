@@ -21,8 +21,7 @@ generator = transformers.pipeline(
     model=model, tokenizer=tokenizer,
     task='text-generation',
     temperature=1,
-    quantization_config=bnb_config,
-    max_new_tokens=250,
+    max_new_tokens=200,
     repetition_penalty=1.1
 )
 prompt = "Could you explain to me how 4-bit quantization works as if I am 5?"
