@@ -66,7 +66,7 @@ def response_generator(question, context):
     # Generate a response using the model
     inputs = tokenizer.encode(formatted_input, return_tensors="pt")
     inputs = inputs.to(model.device)
-    output = model.generate(inputs, max_length=512, num_return_sequences=1, temperature=0.1)
+    output = model.generate(inputs, max_length=512, num_return_sequences=1, temperature=1)
     response_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
     # Append the model's response to the conversation history
