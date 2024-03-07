@@ -4,7 +4,7 @@ from torch import cuda, bfloat16
 import os
 from huggingface_hub import login
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
 bnb_config = BitsAndBytesConfig(
@@ -17,8 +17,8 @@ bnb_config = BitsAndBytesConfig(
 def load_model():
     
     model_id = 'kings-crown/EM624_QA_Multi'
-    base_model_id = "meta-llama/Llama-2-13b-chat-hf"
-    access_token = "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"
+    base_model_id = "meta-llama/Llama-2-7b-chat-hf"
+    access_token = "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"
     login(access_token)
     base_model = AutoModelForCausalLM.from_pretrained(base_model_id, use_auth_token=access_token)
     tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
