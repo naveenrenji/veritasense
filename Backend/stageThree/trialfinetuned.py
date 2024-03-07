@@ -1,14 +1,18 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 from peft import PeftModel, PeftConfig
 from torch import bfloat16
-from huggingface_hub import login, notebook_login
+import torch
+from huggingface_hub import login
 import transformers
 
 # Function to set up and configure the model and tokenizer
-def setup_model(auth_token, model_id="kings-crown/EM624_QA_Full", base_model_id="meta-llama/Llama-2-13b-chat-hf"):
+def setup_model(auth_token, model_id="kings-crown/EM624_QA_Full", base_model_id="meta-llama/Llama-2-7b-chat-hf"):
     # Log in to Hugging Face
     login(auth_token)
-    
+
+    print("CUDA Available:", torch.cuda.is_available())
+    print("Current Device:", torch.cuda.current_device() if torch.cuda.is_available() else "CPU")
+
     # Load the PEFT-configured model
     config = PeftConfig.from_pretrained(model_id, token=auth_token)
     base_model = AutoModelForCausalLM.from_pretrained(base_model_id, token=auth_token)

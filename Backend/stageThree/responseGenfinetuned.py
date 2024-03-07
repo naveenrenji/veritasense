@@ -2,6 +2,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from peft import PeftModel, PeftConfig
 from torch import cuda, bfloat16
 import os
+from huggingface_hub import login
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
@@ -13,9 +15,11 @@ bnb_config = BitsAndBytesConfig(
 )
 
 def load_model():
+    
     model_id = 'kings-crown/EM624_QA_Multi'
     base_model_id = "meta-llama/Llama-2-13b-chat-hf"
     access_token = "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"
+    login(access_token)
     base_model = AutoModelForCausalLM.from_pretrained(base_model_id, use_auth_token=access_token)
     tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
     config = PeftConfig.from_pretrained(model_id, use_auth_token=access_token)
@@ -77,15 +81,8 @@ def response_generator(question, context):
     print("completed response generation")
     return response_text
 
-# def main():
-#     print("Model loaded. You can start chatting. Type 'quit' to exit.")
-    
-#     while True:
-#         question = input("You: ")
-#         if question.lower() == 'quit':
-#             break
-#         response = response_generator(question, "")
-#         print("Bot:", response)
 
-# if __name__ == "__main__":
-#     main()
+question = "What is AI?"
+context = "Artificial Intelligence is a field of computer science."
+response = response_generator(question, context)
+print(response)
