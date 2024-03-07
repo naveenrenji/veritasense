@@ -1,46 +1,50 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from peft import PeftModelForCausalLM, PeftConfig
-from torch import cuda, bfloat16
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+from peft import PeftModel, PeftConfig
+from torch import bfloat16
+from huggingface_hub import login, notebook_login
 import transformers
-bnb_config = transformers.BitsAndBytesConfig(
-    load_in_4bit=True,                         # load the model in 4-bit precision.
-    bnb_4bit_quant_type='nf4',                 # type of quantization to use for 4-bit weights.
-    bnb_4bit_use_double_quant=True,            # use double quantization for 4-bit weights.
-    bnb_4bit_compute_dtype=bfloat16            # compute dtype to use for 4-bit weights.
-)
-def load_model():
-    model_id = 'kings-crown/EM624_QA_Multi'
-    base_model_id = "meta-llama/Llama-2-13b-chat-hf"
-    access_token = "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"
-    base_model = AutoModelForCausalLM.from_pretrained(base_model_id, use_auth_token=access_token)
-    tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
-    config = PeftConfig.from_pretrained(model_id, use_auth_token=access_token)
-    model = transformers.AutoModelForCausalLM.from_pretrained(
-        config.base_model_name_or_path,
-        return_dict=True,
-        quantization_config=bnb_config,
-        device_map="auto",
-        trust_remote_code=True
+
+# Function to set up and configure the model and tokenizer
+def setup_model(auth_token, model_id="kings-crown/EM624_QA_Full", base_model_id="meta-llama/Llama-2-13b-chat-hf"):
+    # Log in to Hugging Face
+    login(auth_token)
+    
+    # Load the PEFT-configured model
+    config = PeftConfig.from_pretrained(model_id, token=auth_token)
+    base_model = AutoModelForCausalLM.from_pretrained(base_model_id, token=auth_token)
+    model = PeftModel.from_pretrained(base_model, model_id, token=auth_token, device_map="auto")
+    
+    # Load the tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(base_model_id)
+    
+    # Create the generation pipeline
+    generator = transformers.pipeline(
+        "text-generation",
+        model=model,
+        tokenizer=tokenizer,
+        temperature=0.1,
+        max_new_tokens=500,
+        repetition_penalty=1.1
     )
-    return model, tokenizer
-def generate_response(model, tokenizer, query):
-    inputs = tokenizer.encode(query, return_tensors='pt')
-    output = model.generate(inputs, max_length=512, num_return_sequences=1, temperature=1.0)
-    response_text = tokenizer.decode(output[0], skip_special_tokens=True)
-    return response_text
-def main():
-    model, tokenizer = load_model()
-    print("Model loaded. You can start chatting. Type 'quit' to exit.")
-    while True:
-        query = input("You: ")
-        if query.lower() == 'quit':
-            break
-        response = generate_response(model, tokenizer, query)
-        print("Bot:", response)
-if __name__ == "__main__":
-    main()
+    
+    return generator
 
+# Response generator function
+def response_generator(question, context, auth_token="your_auth_token_here"):
+    # Replace 'your_auth_token_here' with your actual Hugging Face auth token
+    generator = setup_model(auth_token)
+    
+    # Format the prompt with the question and context
+    prompt = f"Question: {question}\nContext: {context}"
+    
+    # Generate the response
+    res = generator(prompt)
+    
+    # Extract and return the generated text
+    return res[0]["generated_text"]
 
-
-
-
+# Example usage:
+question = "What is AI?"
+context = "Artificial Intelligence is a field of computer science."
+response = response_generator(question, context, auth_token="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")
+print(response)
