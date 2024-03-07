@@ -15,7 +15,7 @@ def load_model():
     
     try:
         # Assuming PeftModel.from_pretrained can directly accept model_id
-        model = PeftModel.from_pretrained(model_id, token=access_token, device_map="auto")
+        model = PeftModel.from_pretrained(base_model_id, model_id, token=access_token, device_map="auto")
         tokenizer = AutoTokenizer.from_pretrained(base_model_id, token=access_token)
     except Exception as e:
         print(f"An error occurred while loading the model or tokenizer: {e}")
