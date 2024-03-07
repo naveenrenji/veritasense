@@ -1,8 +1,9 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from peft import PeftModel, PeftConfig
 from torch import cuda, bfloat16
-import os
 from huggingface_hub import login
+import os
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -20,16 +21,21 @@ def load_model():
     base_model_id = "meta-llama/Llama-2-7b-chat-hf"
     access_token = "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"
     login(access_token)
+    model = PeftModel.from_pretrained(base_model, model_id, token=access_token, device_map="auto")
+
     base_model = AutoModelForCausalLM.from_pretrained(base_model_id, token=access_token)
     tokenizer = AutoTokenizer.from_pretrained(base_model_id, token=access_token)
-    config = PeftConfig.from_pretrained(model_id, token=access_token)
-    model = AutoModelForCausalLM.from_pretrained(
-        config.base_model_name_or_path,
-        return_dict=True,
-        quantization_config=bnb_config,
-        device_map="auto",
-        trust_remote_code=True
-    )
+    # config = PeftConfig.from_pretrained(model_id, token=access_token)
+    # model = AutoModelForCausalLM.from_pretrained(
+    #     config.base_model_name_or_path,
+    #     return_dict=True,
+    #     quantization_config=bnb_config,
+    #     device_map="auto",
+    #     trust_remote_code=True
+    # )
+
+    model = PeftModel.from_pretrained(base_model, model_id, token=access_token, device_map="auto")
+
     return model, tokenizer
 
 # def load_model():
