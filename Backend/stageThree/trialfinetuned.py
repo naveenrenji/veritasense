@@ -5,7 +5,7 @@ from huggingface_hub import login
 import transformers
 
 # Function to set up and configure the model and tokenizer
-def setup_model(auth_token, model_id="kings-crown/EM624_QA_Full", base_model_id="meta-llama/Llama-2-13b-chat-hf"):
+def setup_model(auth_token, model_id="kings-crown/EM624_QA_Full", base_model_id="meta-llama/Llama-2-7b-chat-hf"):
     # Log in to Hugging Face
     login(auth_token)
     
@@ -22,7 +22,7 @@ def setup_model(auth_token, model_id="kings-crown/EM624_QA_Full", base_model_id=
         "text-generation",
         model=model,
         tokenizer=tokenizer,
-        temperature=0.1,
+        temperature=1,
         max_new_tokens=500,
         repetition_penalty=1.1
     )
