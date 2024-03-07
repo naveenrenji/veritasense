@@ -38,7 +38,7 @@ model = transformers.AutoModelForCausalLM.from_pretrained(
     config=model_config,
     quantization_config=bnb_config,
     device_map='auto',
-    use_auth_token=hf_auth
+    token=hf_auth
 )
 
 # enable evaluation mode to allow model inference
@@ -48,7 +48,7 @@ print(f"Model loaded on {device}")
 
 tokenizer = transformers.AutoTokenizer.from_pretrained(
     model_id,
-    use_auth_token=hf_auth
+    token=hf_auth
 )
 
 
