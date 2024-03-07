@@ -16,7 +16,7 @@ bnb_config = BitsAndBytesConfig(
 
 def load_model():
     
-    model_id = 'kings-crown/EM624_QA_Multi'
+    model_id = 'kings-crown/EM624_QA_Full'
     base_model_id = "meta-llama/Llama-2-7b-chat-hf"
     access_token = "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"
     login(access_token)

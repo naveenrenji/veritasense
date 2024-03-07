@@ -2,12 +2,14 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from peft import PeftModel, PeftConfig
 from torch import cuda, bfloat16
 import os
+from huggingface_hub import login
 
 # # Set environment variable to reduce TensorFlow logging
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # # Define your Hugging Face access token here
 auth_token = "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"
+login(auth_token)
 
 # Configure the BitsAndBytes quantization
 bnb_config = BitsAndBytesConfig(
