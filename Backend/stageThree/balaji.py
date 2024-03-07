@@ -11,7 +11,7 @@ model = PeftModel.from_pretrained(base_model, "kings-crown/EM624_QA_Full")
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf")
 
 def response_generator(question, context):
-    global conversation_history
+    conversation_history = []
 
     # Append the new user's question to the conversation history
     conversation_history.append({
