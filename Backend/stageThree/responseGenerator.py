@@ -20,8 +20,9 @@ tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-chat-hf")
 generator = transformers.pipeline(
     model=model, tokenizer=tokenizer,
     task='text-generation',
-    temperature=0.1,
-    max_new_tokens=500,
+    temperature=1,
+    quantization_config=bnb_config,
+    max_new_tokens=250,
     repetition_penalty=1.1
 )
 prompt = "Could you explain to me how 4-bit quantization works as if I am 5?"
