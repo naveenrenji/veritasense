@@ -8,15 +8,21 @@ import os
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 
 def load_model():
-    model_id = 'kings-crown/EM624_QA_Full'
     base_model_id = "meta-llama/Llama-2-7b-chat-hf"
+    fine_tuned_model_id = 'kings-crown/EM624_QA_Full'
     access_token = "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"
+    
     login(access_token)
     
     try:
-        # Assuming PeftModel.from_pretrained can directly accept model_id
-        model = PeftModel.from_pretrained(base_model_id, model_id, token=access_token, device_map="auto")
+        # Load the base model as an actual model object
+        base_model = AutoModelForCausalLM.from_pretrained(base_model_id, token=access_token)
+        
+        # Load the tokenizer associated with the base model
         tokenizer = AutoTokenizer.from_pretrained(base_model_id, token=access_token)
+        
+        # Use the loaded base model object when initializing the PeftModel
+        model = PeftModel.from_pretrained(base_model, fine_tuned_model_id, token=access_token, device_map="auto")
     except Exception as e:
         print(f"An error occurred while loading the model or tokenizer: {e}")
         raise
