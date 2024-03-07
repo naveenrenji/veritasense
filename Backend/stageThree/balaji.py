@@ -28,7 +28,7 @@ def response_generator(question, context):
 
     # Generate a response using the LLaMa model
     inputs = tokenizer.encode(formatted_input, return_tensors="pt")
-    output = model.generate(inputs, max_length=256, num_return_sequences=1, temperature=1.0)
+    output = model.generate(inputs, max_length=60, num_return_sequences=1, temperature=0.1)
     response_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
     # Append the model's response to the conversation history
