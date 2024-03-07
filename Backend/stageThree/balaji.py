@@ -1,8 +1,11 @@
 from peft import PeftModel, PeftConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from huggingface_hub import login
+import logging
+
 auth_token = "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"
 login(auth_token)
+logging.getLogger().setLevel(logging.ERROR)
 
 # Load the PEFT-configured LLaMa model
 config = PeftConfig.from_pretrained("kings-crown/EM624_QA_Full")
