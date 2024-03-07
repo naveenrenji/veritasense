@@ -20,9 +20,9 @@ def load_model():
     base_model_id = "meta-llama/Llama-2-7b-chat-hf"
     access_token = "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"
     login(access_token)
-    base_model = AutoModelForCausalLM.from_pretrained(base_model_id, use_auth_token=access_token)
-    tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
-    config = PeftConfig.from_pretrained(model_id, use_auth_token=access_token)
+    base_model = AutoModelForCausalLM.from_pretrained(base_model_id, token=access_token)
+    tokenizer = AutoTokenizer.from_pretrained(base_model_id, token=access_token)
+    config = PeftConfig.from_pretrained(model_id, token=access_token)
     model = AutoModelForCausalLM.from_pretrained(
         config.base_model_name_or_path,
         return_dict=True,
