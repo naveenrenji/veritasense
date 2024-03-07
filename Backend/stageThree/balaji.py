@@ -16,7 +16,7 @@ def response_generator(question, context):
     # Append the new user's question to the conversation history
     conversation_history.append({
         "role": "user",
-        "content": f"Question: {question}\nContext: {context}"
+        "content": f"Question: {question}\nContext: {context}. now respond-"
     })
 
     # Truncate the conversation history to the last 5 exchanges
@@ -28,7 +28,7 @@ def response_generator(question, context):
 
     # Generate a response using the LLaMa model
     inputs = tokenizer.encode(formatted_input, return_tensors="pt")
-    output = model.generate(inputs, max_length=512, num_return_sequences=1, temperature=1.0)
+    output = model.generate(inputs, max_length=256, num_return_sequences=1, temperature=1.0)
     response_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
     # Append the model's response to the conversation history
