@@ -3,7 +3,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
 
 from stageOne.getcontext import get_answer, load_data
 from stageTwo.dataloading import get_SSE_results, load_model_and_data
-from stageThree.responseGenerator import response_generator
+from stageThree.new import response_generator
 from time import time
 
 
@@ -55,6 +55,6 @@ def get_bot_response(query):
 #     return "mock"
 
 
-# print(get_bot_response("what version of python are we using in class?"))
+print(get_bot_response("what version of python are we using in class?"))
 
 # get_bot_response("what version of python are we using in class?")
