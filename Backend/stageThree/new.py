@@ -28,7 +28,7 @@ bnb_config = transformers.BitsAndBytesConfig(
 hf_auth = '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'
 model_config = transformers.AutoConfig.from_pretrained(
     model_id,
-    use_auth_token=hf_auth
+    token=hf_auth
 )
 
 
@@ -81,7 +81,7 @@ generate_text = transformers.pipeline(
 
 
 def response_generator(question, context):
-    res = generate_text(f"Question: {question}\nContext: {context}. now respond-")
+    res = generate_text(f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond-")
     generated_text = res[0]["generated_text"]
      # Find the index of "now respond-" and slice the text from that point forward
     respond_index = generated_text.find("now respond-")
