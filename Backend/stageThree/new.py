@@ -84,10 +84,10 @@ def response_generator(question, context):
     res = generate_text(f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context -")
     generated_text = res[0]["generated_text"]
      # Find the index of "now respond-" and slice the text from that point forward
-    respond_index = generated_text.find("now respond-")
+    respond_index = generated_text.find("now respond based on the context -")
     if respond_index != -1:
         # Add the length of "now respond-" to start after this substring
-        start_index = respond_index + len("now respond-")
+        start_index = respond_index + len("now respond based on the context -")
         return generated_text[start_index:].strip()  # Strip to remove any leading/trailing whitespace
     else:
         # If "now respond-" is not found, return the entire generated text
