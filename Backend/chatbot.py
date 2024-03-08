@@ -56,6 +56,6 @@ def get_bot_response(query):
 #     return "mock"
 
 
-print(get_bot_response("what version of python are we using in class?"))
+print(get_bot_response("what is object oriented programming?"))
 
 # get_bot_response("what version of python are we using in class?")
