@@ -93,7 +93,7 @@ def response_generator(question, context):
         # If "now respond-" is not found, return the entire generated text
         return generated_text
 
-question = "how to merge pandas"
-context = "You can merge and combine data sets in pandas using builtin methods such as pandas.merge, pandas.concat, and combine_first. The merge function connects rows in DataFrames based on one or more keys, similar to database join operations. Concatenation glues or stacks together objects along an axis, and the combine_first method splices together overlapping data to fill in missing values in one object with values from another.."
+question = "merge pandas"
+context = "kuseyrfgkahelwicjknbe"
 response = response_generator(question, context)
 print(response)
