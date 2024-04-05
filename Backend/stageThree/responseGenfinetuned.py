@@ -51,18 +51,19 @@ def response_generator(question, context):
     
     print("loaded fine tuned model")
     # Append the new user's question to the conversation history
-    conversation_history.append({
-        "role": "user",
-        "content": f"Question: {question}\nContext: {context}"
-    })
+    # conversation_history.append({
+    #     "role": "user",
+    #     "content": f"Question: {question}\nContext: {context}"
+    # })
 
-    # Truncate the conversation history to the last 5 exchanges
-    if len(conversation_history) > 10:
-        conversation_history = conversation_history[-10:]
+    # # Truncate the conversation history to the last 5 exchanges
+    # if len(conversation_history) > 10:
+    #     conversation_history = conversation_history[-10:]
 
-    # Format the conversation history for the model
-    formatted_input = "\n".join([f"{exchange['role']}: {exchange['content']}" for exchange in conversation_history])
+    # # Format the conversation history for the model
+    # formatted_input = "\n".join([f"{exchange['role']}: {exchange['content']}" for exchange in conversation_history])
 
+    formatted_input = f"Question: {question}\nContext: {context}"
     # Generate a response using the model
     inputs = tokenizer.encode(formatted_input, return_tensors="pt")
     inputs = inputs.to(model.device)
@@ -70,14 +71,14 @@ def response_generator(question, context):
     response_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
     # Append the model's response to the conversation history
-    conversation_history.append({
-        "role": "assistant",
-        "content": response_text
-    })
+    # conversation_history.append({
+    #     "role": "assistant",
+    #     "content": response_text
+    # })
 
-    # Truncate the conversation history if necessary
-    if len(conversation_history) > 10:
-        conversation_history = conversation_history[-10:]
+    # # Truncate the conversation history if necessary
+    # if len(conversation_history) > 10:
+    #     conversation_history = conversation_history[-10:]
     print("completed response generation")
     return response_text
 
