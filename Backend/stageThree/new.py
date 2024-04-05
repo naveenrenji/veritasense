@@ -10,8 +10,9 @@ auth_token = "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"
 login(auth_token)
 logging.getLogger().setLevel(logging.ERROR)
 
+torch.cuda.empty_cache()
 
-model_id = 'kings-crown/EM624_QA_Full'
+model_id = 'meta-llama/Llama-2-7b-chat-hf'
 
 device = f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
 

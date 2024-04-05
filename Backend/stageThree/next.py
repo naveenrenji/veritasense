@@ -1,6 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
 from huggingface_hub import login
+torch.cuda.empty_cache()
 
 def load_model():
     model_id = 'kings-crown/EM624_QA_Full'
@@ -22,7 +23,7 @@ def load_model():
     tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
-        use_auth_token=access_token,
+        token=access_token,
         # torch_dtype=torch.bfloat16,
         device_map="auto",
         revision="main",
