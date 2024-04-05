@@ -83,8 +83,8 @@ def response_generator(question, context):
     return response_text
 
 
-question = "What is AI?"
-context = "Artificial Intelligence is a field of computer science."
+question = "how to merge pandas"
+context = "You can merge and combine data sets in pandas using builtin methods such as pandas.merge, pandas.concat, and combine_first. The merge function connects rows in DataFrames based on one or more keys, similar to database join operations. Concatenation glues or stacks together objects along an axis, and the combine_first method splices together overlapping data to fill in missing values in one object with values from another.."
 response = response_generator(question, context)
 print("this s it")
 print(response)
