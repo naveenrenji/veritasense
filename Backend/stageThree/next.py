@@ -3,7 +3,7 @@ import torch
 from huggingface_hub import login
 import gc  # Garbage Collector
 
-print ("Allocated is = " + torch.cuda.memory_reserved())
+print ("Allocated is = ", torch.cuda.memory_reserved())
 def check_and_clear_memory(threshold_gb=30):
     threshold_bytes = threshold_gb * 1024 ** 3
     total_memory = torch.cuda.get_device_properties(0).total_memory
