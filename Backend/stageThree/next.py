@@ -22,13 +22,14 @@ tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-13b-chat-hf")
 # Set device and quantization configuration
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 bnb_config = transformers.BitsAndBytesConfig(
-    load_in_8bit=True,
-    compute_dtype=torch.bfloat16,
-    quantization_dtype=torch.bfloat16
+    load_in_4bit=True,
+    bnb_4bit_quant_type='nf4',
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_compute_dtype=bfloat16
 )
 
+model = model.to(device, bnb_config.to_tensor_dict_func)
 
-model = model.to(device, bnb_config)  # Use bnb_config directly
 # Enable evaluation mode
 model.eval()
 print(f"Model loaded on {device}")
