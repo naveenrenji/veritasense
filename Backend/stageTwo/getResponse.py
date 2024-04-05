@@ -54,7 +54,7 @@ def get_answer2(query, model, question_embeddings, questions, df):
 #     for query in example_queries:
 #         get_answer(query, model, question_embeddings, questions, df)
 
-query="how to merge pandas"
-stageTwoModel, question_embeddings, questions, df = load_data()
-context = get_answer(query, stageTwoModel, question_embeddings, questions, df)
-print(context)
+# query="how to merge pandas"
+# stageTwoModel, question_embeddings, questions, df = load_data2()
+# context = get_answer2(query, stageTwoModel, question_embeddings, questions, df)
+# print(context)
