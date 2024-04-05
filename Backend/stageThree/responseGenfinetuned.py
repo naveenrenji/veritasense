@@ -85,4 +85,5 @@ def response_generator(question, context):
 question = "What is AI?"
 context = "Artificial Intelligence is a field of computer science."
 response = response_generator(question, context)
+print("this s it")
 print(response)
