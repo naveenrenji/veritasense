@@ -27,8 +27,8 @@ bnb_config = transformers.BitsAndBytesConfig(
     bnb_4bit_use_double_quant=True,
     bnb_4bit_compute_dtype=bfloat16
 )
-model = model.to(device, bnb_config.to_tensor_dict_func)
 
+model = model.to(device, dtype=bnb_config.compute_dtype)
 # Enable evaluation mode
 model.eval()
 print(f"Model loaded on {device}")
