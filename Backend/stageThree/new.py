@@ -52,8 +52,8 @@ tokenizer = transformers.AutoTokenizer.from_pretrained(
 )
 
 
-stop_list = ['\nHuman:', '\n```\n', '\nSpeaker:']
-
+# stop_list = ['\nHuman:', '\n```\n', '\nSpeaker:']
+stop_list = []
 stop_token_ids = [tokenizer(x)['input_ids'] for x in stop_list]
 stop_token_ids = [torch.LongTensor(x).to(device) for x in stop_token_ids]
 
