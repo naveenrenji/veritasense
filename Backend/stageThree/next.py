@@ -15,6 +15,7 @@ def check_and_clear_memory(threshold_gb=30):
         torch.cuda.empty_cache()
         gc.collect()
         print("Memory Cleared.")
+check_and_clear_memory()
 
 def load_model():
     model_id = 'kings-crown/EM624_QA_Full'
@@ -38,6 +39,8 @@ def load_model():
 model, tokenizer = load_model()
 
 def response_generator(question, context):
+    check_and_clear_memory()
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)  # Ensure the model is on the right device
 
