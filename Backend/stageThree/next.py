@@ -1,4 +1,4 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig, pipeline
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
 from huggingface_hub import login
 
@@ -10,20 +10,20 @@ def load_model():
     # Log in to Hugging Face
     login(access_token)
     
-    # Set up BitsAndBytes configuration for 8-bit quantization
-    bnb_config = BitsAndBytesConfig(
-        load_in_8bit=True,
-        bnb_8bit_quant_type='nf4',
-        bnb_8bit_use_double_quant=True,
-        bnb_8bit_compute_dtype=torch.bfloat16
-    )
+    # # Set up BitsAndBytes configuration for 8-bit quantization
+    # bnb_config = BitsAndBytesConfig(
+    #     load_in_8bit=True,
+    #     bnb_8bit_quant_type='nf4',
+    #     bnb_8bit_use_double_quant=True,
+    #     bnb_8bit_compute_dtype=torch.bfloat16
+    # )
     
     # Load the tokenizer and the model with BitsAndBytes configuration
     tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
         use_auth_token=access_token,
-        torch_dtype=torch.bfloat16,
+        # torch_dtype=torch.bfloat16,
         device_map="auto",
         revision="main",
         # low_cpu_mem_usage=True
