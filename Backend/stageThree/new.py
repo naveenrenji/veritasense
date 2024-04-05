@@ -53,19 +53,19 @@ tokenizer = transformers.AutoTokenizer.from_pretrained(
 
 
 # stop_list = ['\nHuman:', '\n```\n', '\nSpeaker:']
-# stop_list = ['\n']
-# stop_token_ids = [tokenizer(x)['input_ids'] for x in stop_list]
-# stop_token_ids = [torch.LongTensor(x).to(device) for x in stop_token_ids]
+stop_list = []
+stop_token_ids = [tokenizer(x)['input_ids'] for x in stop_list]
+stop_token_ids = [torch.LongTensor(x).to(device) for x in stop_token_ids]
 
-# # define custom stopping criteria object
-# class StopOnTokens(StoppingCriteria):
-#     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
-#         for stop_ids in stop_token_ids:
-#             if torch.eq(input_ids[0][-len(stop_ids):], stop_ids).all():
-#                 return True
-#         return False
+# define custom stopping criteria object
+class StopOnTokens(StoppingCriteria):
+    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
+        for stop_ids in stop_token_ids:
+            if torch.eq(input_ids[0][-len(stop_ids):], stop_ids).all():
+                return True
+        return False
 
-# stopping_criteria = StoppingCriteriaList([StopOnTokens()])
+stopping_criteria = StoppingCriteriaList([StopOnTokens()])
 
 generate_text = transformers.pipeline(
     model=model, 
@@ -75,19 +75,19 @@ generate_text = transformers.pipeline(
     # we pass model parameters here too
     # stopping_criteria=stopping_criteria,  # without this model rambles during chat
     temperature=0.1,  # 'randomness' of outputs, 0.0 is the min and 1.0 the max
-    max_new_tokens=256,  # max number of tokens to generate in the output
+    max_new_tokens=512,  # max number of tokens to generate in the output
     repetition_penalty=1.1  # without this output begins repeating
 )
 
 
 def response_generator(question, context):
-    res = generate_text(f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context with your response starting with 'Answer:'")
+    res = generate_text(f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context -")
     generated_text = res[0]["generated_text"]
      # Find the index of "now respond-" and slice the text from that point forward
-    respond_index = generated_text.find("with your response starting with 'Answer:'")
+    respond_index = generated_text.find("now respond based on the context -")
     if respond_index != -1:
         # Add the length of "now respond-" to start after this substring
-        start_index = respond_index + len("with your response starting with 'Answer:'")
+        start_index = respond_index + len("now respond based on the context -")
         return generated_text[start_index:].strip()  # Strip to remove any leading/trailing whitespace
     else:
         # If "now respond-" is not found, return the entire generated text
