@@ -4,7 +4,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
 from stageOne.getcontext import get_answer, load_data
 from stageTwo.getResponse import get_answer2, load_data2
 # from stageTwo.dataloading import get_SSE_results, load_model_and_data
-from stageThree.new import response_generator
+from stageThree.next import response_generator
 from time import time
 
 
