@@ -34,9 +34,9 @@ def load_model():
 model, tokenizer = load_model()
 
 def response_generator(question, context):
-    # Ensure model and tokenizer are moved to the appropriate device
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
+    # # Ensure model and tokenizer are moved to the appropriate device
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # model.to(device)
 
     # Initialize the pipeline for text-generation with the model and tokenizer
     text_gen_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
