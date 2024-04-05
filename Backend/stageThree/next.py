@@ -39,7 +39,7 @@ def response_generator(question, context):
     model.to(device)
 
     # Initialize the pipeline for text-generation with the model and tokenizer
-    text_gen_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0 if device.type == 'cuda' else -1)
+    text_gen_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
     
     # Generate the response based on the context and question
     prompt = f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context -"
