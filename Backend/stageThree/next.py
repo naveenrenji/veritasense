@@ -26,7 +26,7 @@ def load_model():
         torch_dtype=torch.bfloat16,
         device_map="auto",
         revision="main",
-        low_cpu_mem_usage=True
+        # low_cpu_mem_usage=True
     )
     
     return model, tokenizer
