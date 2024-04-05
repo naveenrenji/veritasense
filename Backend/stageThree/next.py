@@ -23,25 +23,27 @@ def load_model():
     login(access_token)
     
     tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_id,
-        token=access_token,
-        device_map="auto",  # Let the library handle device mapping
-        revision="main",
-    )
+    model = AutoModelForCausalLM.from_pretrained(model_id, token=access_token)
     
+    if torch.cuda.device_count() > 1:  # Check if more than one GPU is available
+        print(f"Let's use {torch.cuda.device_count()} GPUs!")
+        model = torch.nn.DataParallel(model)  # Wrap the model for DataParallel
+    
+    model.to('cuda')  # Move the model to the default CUDA device
+
     return model, tokenizer
+
 
 model, tokenizer = load_model()
 
 def response_generator(question, context):
-    check_and_clear_memory()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)  # Ensure the model is on the right device
 
-    # Automatically use the pipeline on the available device(s)
-    text_gen_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
-
+    text_gen_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0 if device.type == 'cuda' else -1)
+    
     prompt = f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context -"
-    generated_responses = text_gen_pipeline(prompt, max_length=512, num_return_sequences=1, temperature=0.7)
+    generated_responses = text_gen_pipeline(prompt, truncation=True, max_length=512, num_return_sequences=1, temperature=0.7)
 
     generated_text = generated_responses[0]['generated_text']
     respond_index = generated_text.find("now respond based on the context -") + len("now respond based on the context -")
