@@ -2,6 +2,7 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
 
 from stageOne.getcontext import get_answer, load_data
+from stageTwo.getResponse import get_answer2, load_data2
 from stageTwo.dataloading import get_SSE_results, load_model_and_data
 from stageThree.new import response_generator
 from time import time
@@ -34,10 +35,13 @@ def get_bot_response(query):
         # if loadedStageTwoModel is False:
         #     stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
         #     loadedStageTwoModel = True
-        stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
-        context = get_SSE_results(query, stageTwoModel, corpus_sentences, corpus_embeddings)  # Implement your model function here
+        # stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
+        # context = get_SSE_results(query, stageTwoModel, corpus_sentences, corpus_embeddings)  # Implement your model function here
+        # print(context) # for debugging only
+        # pass  # Placeholder for stage 2 component
+        stageOneModel, question_embeddings, questions, df = load_data()
+        context = get_answer(query, stageOneModel, question_embeddings, questions, df)
         print(context) # for debugging only
-        pass  # Placeholder for stage 2 component
 
     # Now we pass the data to the stage 3 component. 
     # context = "python3.0 is the version we use in class"
