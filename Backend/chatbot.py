@@ -46,7 +46,7 @@ def get_bot_response(query):
     # Now we pass the data to the stage 3 component. 
     # context = "python3.0 is the version we use in class"
     if context == 'not found':
-        response = "Sorry, I do not have the answer to that, please ask me another question."
+        response = "Hello, please ask me a question related to Python Programming."
     else: 
         response = response_generator(query, context)
         # response = "Temporary response data -- " + context
