@@ -52,8 +52,8 @@ def response_generator(question, context):
 
     return response
 
-# # Example usage
-# question = "What is AI?"
-# context = "Artificial Intelligence is a field of computer science."
-# response = response_generator(question, context)
-# print(response)
+# Example usage
+question = "What is AI?"
+context = "Artificial Intelligence is a field of computer science."
+response = response_generator(question, context)
+print(response)
