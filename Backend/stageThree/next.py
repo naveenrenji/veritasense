@@ -23,32 +23,33 @@ def load_model():
     login(access_token)
     
     tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
-    model = AutoModelForCausalLM.from_pretrained(model_id, token=access_token, device_map="auto", revision="main")
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        token=access_token,
+        device_map="auto",  # Let the library handle device mapping
+        revision="main",
+    )
     
     return model, tokenizer
 
-model, tokenizer = load_model()  # Load once and keep reusing
+model, tokenizer = load_model()
 
 def response_generator(question, context):
     check_and_clear_memory()
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
 
-    with torch.no_grad():  # Prevent tracking of gradients to save memory
-        text_gen_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0 if device.type == 'cuda' else -1)
-        prompt = f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context -"
-        generated_responses = text_gen_pipeline(prompt, max_length=512, num_return_sequences=1, temperature=0.7)
+    # Automatically use the pipeline on the available device(s)
+    text_gen_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer)
+
+    prompt = f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context -"
+    generated_responses = text_gen_pipeline(prompt, max_length=512, num_return_sequences=1, temperature=0.7)
 
     generated_text = generated_responses[0]['generated_text']
     respond_index = generated_text.find("now respond based on the context -") + len("now respond based on the context -")
     response = generated_text[respond_index:].strip()
 
-    del generated_responses, generated_text  # Explicitly delete large variables
-    gc.collect()
-    torch.cuda.empty_cache()  # Clear cache after deletion
-
     return response
 
+# Example usage
 question = "What is AI?"
 context = "Artificial Intelligence is a field of computer science."
 response = response_generator(question, context)
