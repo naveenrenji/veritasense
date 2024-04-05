@@ -81,13 +81,13 @@ generate_text = transformers.pipeline(
 
 
 def response_generator(question, context):
-    res = generate_text(f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context - with your response starting with 'Answer:' ")
+    res = generate_text(f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context with your response starting with 'Answer:' ")
     generated_text = res[0]["generated_text"]
      # Find the index of "now respond-" and slice the text from that point forward
-    respond_index = generated_text.find("now respond based on the context -")
+    respond_index = generated_text.find("with your response starting with 'Answer:'")
     if respond_index != -1:
         # Add the length of "now respond-" to start after this substring
-        start_index = respond_index + len("now respond based on the context -")
+        start_index = respond_index + len("with your response starting with 'Answer:'")
         return generated_text[start_index:].strip()  # Strip to remove any leading/trailing whitespace
     else:
         # If "now respond-" is not found, return the entire generated text
