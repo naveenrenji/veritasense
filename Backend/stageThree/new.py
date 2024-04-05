@@ -54,18 +54,18 @@ tokenizer = transformers.AutoTokenizer.from_pretrained(
 
 # stop_list = ['\nHuman:', '\n```\n', '\nSpeaker:']
 # stop_list = ['\n']
-stop_token_ids = [tokenizer(x)['input_ids'] for x in stop_list]
-stop_token_ids = [torch.LongTensor(x).to(device) for x in stop_token_ids]
+# stop_token_ids = [tokenizer(x)['input_ids'] for x in stop_list]
+# stop_token_ids = [torch.LongTensor(x).to(device) for x in stop_token_ids]
 
-# define custom stopping criteria object
-class StopOnTokens(StoppingCriteria):
-    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
-        for stop_ids in stop_token_ids:
-            if torch.eq(input_ids[0][-len(stop_ids):], stop_ids).all():
-                return True
-        return False
+# # define custom stopping criteria object
+# class StopOnTokens(StoppingCriteria):
+#     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
+#         for stop_ids in stop_token_ids:
+#             if torch.eq(input_ids[0][-len(stop_ids):], stop_ids).all():
+#                 return True
+#         return False
 
-stopping_criteria = StoppingCriteriaList([StopOnTokens()])
+# stopping_criteria = StoppingCriteriaList([StopOnTokens()])
 
 generate_text = transformers.pipeline(
     model=model, 
