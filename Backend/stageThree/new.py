@@ -53,7 +53,7 @@ tokenizer = transformers.AutoTokenizer.from_pretrained(
 
 
 # stop_list = ['\nHuman:', '\n```\n', '\nSpeaker:']
-stop_list = []
+stop_list = ['\n']
 stop_token_ids = [tokenizer(x)['input_ids'] for x in stop_list]
 stop_token_ids = [torch.LongTensor(x).to(device) for x in stop_token_ids]
 
@@ -73,9 +73,9 @@ generate_text = transformers.pipeline(
     return_full_text=True,  # langchain expects the full text
     task='text-generation',
     # we pass model parameters here too
-    # stopping_criteria=stopping_criteria,  # without this model rambles during chat
+    stopping_criteria=stopping_criteria,  # without this model rambles during chat
     temperature=0.1,  # 'randomness' of outputs, 0.0 is the min and 1.0 the max
-    max_new_tokens=512,  # max number of tokens to generate in the output
+    max_new_tokens=256,  # max number of tokens to generate in the output
     repetition_penalty=1.1  # without this output begins repeating
 )
 
@@ -94,6 +94,6 @@ def response_generator(question, context):
         return generated_text
 
 question = "merge pandas"
-context = "kuseyrfgkahelwicjknbe"
+context = "You can merge and combine data sets in pandas using builtin methods such as pandas.merge, pandas.concat, and combine_first. The merge function connects rows in DataFrames based on one or more keys, similar to database join operations. Concatenation glues or stacks together objects along an axis, and the combine_first method splices together overlapping data to fill in missing values in one object with values from another.."
 response = response_generator(question, context)
 print(response)
