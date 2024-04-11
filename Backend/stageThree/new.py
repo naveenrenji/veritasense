@@ -14,6 +14,8 @@ torch.cuda.empty_cache()
 
 model_id = 'meta-llama/Llama-2-7b-chat-hf'
 
+print(torch.cuda.memory_summary(device=None, abbreviated=False))
+
 device = f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
 
 # set quantization configuration to load large model with less GPU memory
@@ -44,6 +46,8 @@ model = transformers.AutoModelForCausalLM.from_pretrained(
 
 # enable evaluation mode to allow model inference
 model.eval()
+
+print(torch.cuda.memory_summary(device=None, abbreviated=False))
 
 print(f"Model loaded on {device}")
 

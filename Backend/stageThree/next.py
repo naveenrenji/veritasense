@@ -13,14 +13,16 @@ base_model_id = "meta-llama/Llama-2-13b-chat-hf"
 tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
 model = AutoModelForCausalLM.from_pretrained(model_id, use_auth_token=access_token)
 
-# Move model to GPU if available and use DataParallel if multiple GPUs are available
+print(torch.cuda.memory_summary(device=None, abbreviated=False))
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 if torch.cuda.device_count() > 1:
     print(f"Let's use {torch.cuda.device_count()} GPUs!")
     model = torch.nn.DataParallel(model)
 
-# Initialize the pipeline once
+print(torch.cuda.memory_summary(device=None, abbreviated=False))
+
 text_gen_pipeline = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0 if device.type == 'cuda' else -1)
 
 def check_and_clear_memory():
@@ -32,14 +34,14 @@ def check_and_clear_memory():
 def response_generator(question, context):
     check_and_clear_memory()
 
-    with torch.no_grad():  # No gradient computation for inference
+    with torch.no_grad():  
         prompt = f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context -"
         generated_responses = text_gen_pipeline(prompt, truncation=True, max_length=512, num_return_sequences=1, temperature=0.7)
 
     generated_text = generated_responses[0]['generated_text']
     respond_index = generated_text.find("now respond based on the context -") + len("now respond based on the context -")
     response = generated_text[respond_index:].strip()
-    check_and_clear_memory()  # Clear memory after generating each response
+    check_and_clear_memory() 
     return response
 
 # Example usage
