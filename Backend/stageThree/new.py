@@ -93,7 +93,7 @@ def response_generator(question, context):
     if respond_index != -1:
         # Add the length of "now respond-" to start after this substring
         start_index = respond_index + len("now respond based on the context -")
-        torch.cuda.memory_summary(device=None, abbreviated=False)
+        print(torch.cuda.memory_summary(device=None, abbreviated=False))
         return generated_text[start_index:].strip()  # Strip to remove any leading/trailing whitespace
     else:
         # If "now respond-" is not found, return the entire generated text
@@ -113,4 +113,4 @@ Tokenization can be used to protect sensitive data or to efficiently process lar
 Tokenization can also refer to the process of breaking down a sequence of text into smaller parts, known as tokens. These tokens can be as small as characters or as long as words. For example, tokenizing the sentence “I love ice cream” would result in three tokens: “I,” “love,” and “ice cream”. This process is fundamental in natural language processing and text analysis tasks. """
 response = response_generator(question, context)
 print(response)
-torch.cuda.memory_summary(device=None, abbreviated=False)
+print(torch.cuda.memory_summary(device=None, abbreviated=False))
