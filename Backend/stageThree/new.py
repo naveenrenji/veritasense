@@ -93,12 +93,24 @@ def response_generator(question, context):
     if respond_index != -1:
         # Add the length of "now respond-" to start after this substring
         start_index = respond_index + len("now respond based on the context -")
+        torch.cuda.memory_summary(device=None, abbreviated=False)
         return generated_text[start_index:].strip()  # Strip to remove any leading/trailing whitespace
     else:
         # If "now respond-" is not found, return the entire generated text
         return generated_text
 
-question = "What is AI?"
-context = "Artificial Intelligence is a field of computer science."
+question = "Explain Tokenisation in NLP?"
+context = """Tokenization is the process of replacing sensitive data with a surrogate value, or token, that is non-sensitive and randomized. Tokens are unique identifiers that retain all the important information about the data without compromising its security. For example, a credit card number can be replaced with a token, which is a string of randomized characters. 
+
+Imperva, Inc.
+Data & Payment Tokenization Explained - Imperva, Inc.
+What is Tokenization. Tokenization replaces a sensitive data element, for example, a bank account number, with a non-sensitive substitute, known as a token. The token is a randomized data string that has no essential or exploitable value or meaning. It is a unique identifier which retains all the pertinent information about the data without compromising its security. A tokenization system links the original data to a token but does not provide any way to decipher the token and reveal the original data. This is in contrast to encryption systems, which allow data to be deciphered using a secret key.
+
+gartner.com
+Definition of Tokenization - Gartner Information Technology Glossary
+Tokenization refers to a process by which a piece of sensitive data, such as a credit card number, is replaced by a surrogate value known as a token. The sensitive data still generally needs to be stored securely at one centralized location for subsequent reference and requires strong protections around it.
+Tokenization can be used to protect sensitive data or to efficiently process large amounts of data. For example, tokenization can prevent criminals from duplicating bank information onto another card. While tokenization cannot safeguard an organization from a data breach, it may mitigate the financial repercussions. 
+Tokenization can also refer to the process of breaking down a sequence of text into smaller parts, known as tokens. These tokens can be as small as characters or as long as words. For example, tokenizing the sentence “I love ice cream” would result in three tokens: “I,” “love,” and “ice cream”. This process is fundamental in natural language processing and text analysis tasks. """
 response = response_generator(question, context)
 print(response)
+torch.cuda.memory_summary(device=None, abbreviated=False)
