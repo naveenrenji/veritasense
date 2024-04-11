@@ -112,5 +112,6 @@ Tokenization refers to a process by which a piece of sensitive data, such as a c
 Tokenization can be used to protect sensitive data or to efficiently process large amounts of data. For example, tokenization can prevent criminals from duplicating bank information onto another card. While tokenization cannot safeguard an organization from a data breach, it may mitigate the financial repercussions. 
 Tokenization can also refer to the process of breaking down a sequence of text into smaller parts, known as tokens. These tokens can be as small as characters or as long as words. For example, tokenizing the sentence “I love ice cream” would result in three tokens: “I,” “love,” and “ice cream”. This process is fundamental in natural language processing and text analysis tasks. """
 response = response_generator(question, context)
+torch.cuda.synchronize()
 print(response)
 print(torch.cuda.memory_summary(device=None, abbreviated=False))
