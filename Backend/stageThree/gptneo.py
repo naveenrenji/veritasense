@@ -1,6 +1,7 @@
 import torch
 from transformers import GPTNeoForCausalLM, GPT2Tokenizer
 import warnings
+import gc 
 
 # Suppress warnings from the transformers library
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -10,6 +11,12 @@ warnings.filterwarnings("ignore", category=UserWarning)
 tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B")
 model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
 
+
+def check_and_clear_memory():
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+
 # Set the model to evaluation mode
 model.eval()
 
@@ -18,6 +25,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
 def generate_response(question, context):
+    check_and_clear_memory()
     # Encode the context and question to tensor format
     input_text = context + "\nQuestion: " + question + "\nAnswer:"
     input_ids = tokenizer.encode(input_text, return_tensors='pt').to(device)
