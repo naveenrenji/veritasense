@@ -1,5 +1,9 @@
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
 import torch
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import warnings
+
+# Suppress warnings from the transformers library
+warnings.filterwarnings("ignore", category=UserWarning)
 
 # Initialize the tokenizer and model
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
@@ -25,14 +29,19 @@ def generate_response(question, context):
         no_repeat_ngram_size=2,  # Ensures the model does not repeat n-grams
         temperature=0.7,  # Controls randomness: lower is less random
         top_p=0.9,  # Nucleus sampling: top p% probability mass
-        pad_token_id=tokenizer.eos_token_id
+        pad_token_id=tokenizer.eos_token_id,
+        do_sample=True  # Enables sampling, required when using temperature and top_p
     )
 
     # Decode the output tokens to string
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
     
-    # Print the response
-    print(response)
+    # Extract the answer part after "Answer:"
+    answer_start = response.find("Answer:") + len("Answer:")
+    answer = response[answer_start:].strip()
+
+    # Print only the answer
+    print(answer)
 
 # Example question and context
 question = "What is the role of AI in healthcare?"
