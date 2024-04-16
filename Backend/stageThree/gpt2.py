@@ -1,5 +1,9 @@
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 import torch
+import warnings
+
+# Suppress warnings from the transformers library
+warnings.filterwarnings("ignore", category=UserWarning)
 
 # Initialize the tokenizer and model
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
@@ -30,7 +34,7 @@ def generate_response(question, context):
 
     # Decode the output tokens to string
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    
+
         # Extract the answer part after "Answer:"
     answer_start = response.find("Answer:") + len("Answer:")
     answer = response[answer_start:].strip()
