@@ -1,13 +1,12 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
-import gc  # Garbage Collector
+import gc  
 from huggingface_hub import login
 
-# Login once at the start
 access_token = "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"
 login(access_token)
 
-# Load model and tokenizer once
+
 model_id = 'kings-crown/EM624_QA_Full'
 base_model_id = "meta-llama/Llama-2-13b-chat-hf"
 tokenizer = AutoTokenizer.from_pretrained(base_model_id, use_auth_token=access_token)
@@ -18,7 +17,7 @@ print(torch.cuda.memory_summary(device=None, abbreviated=False))
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 if torch.cuda.device_count() > 1:
-    print(f"Let's use {torch.cuda.device_count()} GPUs!")
+    print(f"Gpu counts just for me to see : {torch.cuda.device_count()} ")
     model = torch.nn.DataParallel(model)
 
 print(torch.cuda.memory_summary(device=None, abbreviated=False))
@@ -44,9 +43,15 @@ def response_generator(question, context):
     check_and_clear_memory() 
     return response
 
-# Example usage
 question = "What is AI?"
 context = "Artificial Intelligence is a field of computer science."
+response = response_generator(question, context)
+torch.cuda.synchronize()
+print(response)
+
+question = "Explain Tokenisation in NLP?"
+context = """Tokenization is the process of replacing sensitive data with a surrogate value, or token, that is non-sensitive and randomized. Tokens are unique identifiers that retain all the important information about the data without compromising its security. For example, a credit card number can be replaced with a token, which is a string of randomized characters. 
+Tokenization can also refer to the process of breaking down a sequence of text into smaller parts, known as tokens. These tokens can be as small as characters or as long as words. For example, tokenizing the sentence “I love ice cream” would result in three tokens: “I,” “love,” and “ice cream”. This process is fundamental in natural language processing and text analysis tasks. """
 response = response_generator(question, context)
 torch.cuda.synchronize()
 print(response)
