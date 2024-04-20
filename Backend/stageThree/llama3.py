@@ -10,12 +10,9 @@ prompt = f"Answer this Question based on the context, you are playing the role o
 
 access_token = "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"
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-model = AutoModelForCausalLM.from_pretrained(model_name, load_in_4bit=True,  use_auth_token=access_token)
-
-model.to(device)
-
+model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_4bit=True,  use_auth_token=access_token)
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True, use_auth_token=access_token)
 model_inputs = tokenizer(prompt, return_tensors="pt").to("cuda:0")
 
