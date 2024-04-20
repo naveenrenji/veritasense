@@ -12,7 +12,7 @@ access_token = "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"
 
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_8bit=True,,  use_auth_token=access_token)
+model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_8bit=True, use_auth_token=access_token)
 tokenizer = AutoTokenizer.from_pretrained(model_name, max_new_tokens=512, use_fast=True, use_auth_token=access_token)
 model_inputs = tokenizer(prompt, return_tensors="pt", max_new_tokens=512).to("cuda:0")
 
