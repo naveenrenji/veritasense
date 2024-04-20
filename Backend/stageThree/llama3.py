@@ -1,4 +1,7 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+
+
 model_name = "meta-llama/Meta-Llama-3-8B"
 question = "Explain Tokenisation in NLP?"
 context = """Tokenization is the process of replacing sensitive data with a surrogate value, or token, that is non-sensitive and randomized. Tokens are unique identifiers that retain all the important information about the data without compromising its security. For example, a credit card number can be replaced with a token, which is a string of randomized characters. 
@@ -7,9 +10,12 @@ prompt = f"Answer this Question based on the context, you are playing the role o
 
 access_token = "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"
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+model = AutoModelForCausalLM.from_pretrained(model_name, load_in_4bit=True,  use_auth_token=access_token)
 
-model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_4bit=True,  use_auth_token=access_token)
+model.to(device)
+
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True, use_auth_token=access_token)
 model_inputs = tokenizer(prompt, return_tensors="pt").to("cuda:0")
 
