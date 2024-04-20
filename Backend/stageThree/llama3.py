@@ -14,7 +14,7 @@ access_token = "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"
 
 model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", load_in_8bit=True, use_auth_token=access_token)
 tokenizer = AutoTokenizer.from_pretrained(model_name, max_new_tokens=512, use_fast=True, use_auth_token=access_token)
-model_inputs = tokenizer(prompt, return_tensors="pt", max_new_tokens=512).to("cuda:0")
+model_inputs = tokenizer(prompt, return_tensors="pt").to("cuda:0")
 
 output = model.generate(**model_inputs)
 
