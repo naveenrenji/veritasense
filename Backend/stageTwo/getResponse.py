@@ -35,7 +35,7 @@ def get_answer2(query, model, question_embeddings, questions, df):
         matched_question = questions[closest_idx]
         answer = df['answer'][closest_idx]
         print(f"Query: {query} || Matched question: {matched_question}   navs || Answer: {answer} ||")
-        #return answer
+        return answer
     else:
         print("There was no direct match with existing questions.")
         return 'not found'

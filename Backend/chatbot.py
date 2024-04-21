@@ -48,6 +48,8 @@ def get_bot_response(query):
     if context == 'not found':
         response = "Hello, please ask me a question related to Python Programming."
     else: 
+        print("this one")
+        print(query, context)
         response = generate_response(query, context)
         # response = "Temporary response data -- " + context
 
@@ -60,6 +62,6 @@ def get_bot_response(query):
 #     return "mock"
 
 
-# print(get_bot_response("what is object oriented programming?"))
+print(get_bot_response("what is object oriented programming?"))
 
-# print(get_bot_response("what version of python are we using in class?"))
+print(get_bot_response("what version of python are we using in class?"))
