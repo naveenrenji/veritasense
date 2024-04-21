@@ -33,7 +33,7 @@ def generate_response(query, context):
     # Generate response using the model
     outputs = model.generate(
         input_ids,
-        max_length=512,  # Maximum length for the output text
+        max_length=256,  # Maximum length for the output text
         num_return_sequences=1,  # Number of responses to generate
         no_repeat_ngram_size=2,  # Ensures the model does not repeat n-grams
         temperature=0.7,  # Controls randomness: lower is less random
