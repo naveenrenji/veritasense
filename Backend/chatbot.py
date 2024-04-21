@@ -4,7 +4,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
 from stageOne.getcontext import get_answer, load_data
 from stageTwo.getResponse import get_answer2, load_data2
 # from stageTwo.dataloading import get_SSE_results, load_model_and_data
-from stageThree.gptneo import response_generator
+from stageThree.gptneo import generate_response
 from time import time
 
 
@@ -48,7 +48,7 @@ def get_bot_response(query):
     if context == 'not found':
         response = "Hello, please ask me a question related to Python Programming."
     else: 
-        response = response_generator(query, context)
+        response = generate_response(query, context)
         # response = "Temporary response data -- " + context
 
     print("started response generation")
@@ -60,6 +60,6 @@ def get_bot_response(query):
 #     return "mock"
 
 
-print(get_bot_response("what is object oriented programming?"))
+# print(get_bot_response("what is object oriented programming?"))
 
-print(get_bot_response("what version of python are we using in class?"))
+# print(get_bot_response("what version of python are we using in class?"))
