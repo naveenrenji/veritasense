@@ -23,9 +23,9 @@ function App() {
           <Route
             path="/chatbot"
             element={
-              <RequireAuth loginPath="/login">
+              // <RequireAuth loginPath="/login">
                 <Chatbot />
-              </RequireAuth>
+              // </RequireAuth>
             }
           />
           <Route path="/login" element={<Login />} />
