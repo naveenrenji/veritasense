@@ -15,6 +15,9 @@ RUN python stageTwo/downloadmodel2.py
 RUN python stageOne/prepareData.py
 RUN python stageTwo/prepareData.py
 
+#download and test run the response generator
+RUN python stageThree/langgptq.py
+
 #CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "1800", "app:app"]
