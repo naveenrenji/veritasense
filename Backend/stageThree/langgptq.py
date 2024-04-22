@@ -111,7 +111,16 @@ def resgen(query, context):
 
     # Form the complete history from deque
     history_str = " ".join(history_queue)
-    response = chain.run({"history": history_str, "context": context, "query": query})
+    full_text = chain.run({"history": history_str, "context": context, "query": query})
+
+        # Extract the response by finding the marker '[/INST]' and taking the text that follows
+    try:
+        # Locate the end of the prompt
+        response_start_index = full_text.index('[/INST]') + len('[/INST]')
+        response = full_text[response_start_index:].strip()
+    except ValueError:
+        response = "Sorry, I couldn't process your request properly."
+
     return response
 
 
