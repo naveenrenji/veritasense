@@ -47,8 +47,8 @@ llm = HuggingFacePipeline(pipeline=text_pipeline, model_kwargs={"temperature": 0
 #     template=template,
 # )
 
-# # Interaction history queue
-# history_queue = deque(maxlen=5)  # Stores the last 5 interactions
+# Interaction history queue
+history_queue = deque(maxlen=5)  # Stores the last 5 interactions
 
 # def resgen(query, context):
 #     # Update the history with the current context and query
