@@ -1,37 +1,29 @@
-from transformers import AutoModelForCausalLM, AutoConfig, AutoTokenizer
-import transformers
+import os
 import torch
-from huggingface_hub import login
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 
-# Authentication token and model ID
-auth_token = "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"
-model_id = 'meta-llama/Llama-2-7b-chat-hf'
+# Setup model directory
+model_dir = './models'
+MODEL_NAME = "TheBloke/Llama-2-13b-Chat-GPTQ"
 
-# Login to Hugging Face
-login(auth_token)
+# Ensure the directory exists
+if not os.path.exists(model_dir):
+    os.makedirs(model_dir)
 
-# Model configuration
-model_config = AutoConfig.from_pretrained(model_id, token=auth_token)
+# Initialize and save model and tokenizer
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
+tokenizer.save_pretrained(model_dir)
 
-# Set quantization configuration to load large model with less GPU memory
-bnb_config = transformers.BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_quant_type='nf4',
-    bnb_4bit_use_double_quant=True,
-    bnb_4bit_compute_dtype=torch.bfloat16
-)
+model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.float16, trust_remote_code=True, device_map="auto")
+model.save_pretrained(model_dir)
 
-# Download and save the model
-model = AutoModelForCausalLM.from_pretrained(
-    model_id,
-    trust_remote_code=True,
-    config=model_config,
-    quantization_config=bnb_config,
-    device_map='auto',
-    token=auth_token
-)
-model.save_pretrained('./models/Llama-2-7b-chat-hf')
+# Create and save configuration
+generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
+generation_config.max_new_tokens = 512
+generation_config.temperature = 0.1
+generation_config.top_p = 0.95
+generation_config.do_sample = True
+generation_config.repetition_penalty = 1.15
+generation_config.save_pretrained(model_dir)
 
-# Download and save the tokenizer
-tokenizer = AutoTokenizer.from_pretrained(model_id, token=auth_token)
-tokenizer.save_pretrained('./models/Llama-2-7b-chat-hf-tokenizer')
+print("Model and tokenizer have been saved to:", model_dir)
