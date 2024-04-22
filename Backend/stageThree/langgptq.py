@@ -28,48 +28,7 @@ text_pipeline = pipeline(
 
 llm = HuggingFacePipeline(pipeline=text_pipeline, model_kwargs={"temperature": 0})
 
-# # Create the prompt template
-# template = """
-# <s>[INST] <<SYS>> Act as a computer science professor. <</SYS>> {history} {context} {query} [/INST]
-# """
-
-# # Create the prompt template
-# template = """
-# <s>[INST] <sys-instruction> As a computer science professor, respond thoroughly and with academic precision. 
-# Provide examples when necessary and relate the response to practical applications in the field. </sys-instruction>
-# <sys-context> Historical Context: {history} </sys-context>
-# <sys-query> Current Discussion Topic: {context}. Question: {query} </sys-query> [/INST]
-# """
-
-
-# prompt = PromptTemplate(
-#     input_variables=["history", "context", "query"],
-#     template=template,
-# )
-
-# Interaction history queue
 history_queue = deque(maxlen=5)  # Stores the last 5 interactions
-
-# def resgen(query, context):
-#     # Update the history with the current context and query
-#     history_queue.append(f"Context: {context}, Query: {query}")
-
-#     # Create a combined history string
-#     history = " ".join(history_queue)
-
-#     # Format the prompt with history, current context, and query
-#     formatted_prompt = prompt.format(history=history, context=context, query=query)
-#     result = llm(formatted_prompt)
-#     return result
-
-
-
-
-
-#traial stuff - 
-
-
-
 
 # For general discussion
 general_discussion_template = PromptTemplate(
@@ -120,6 +79,15 @@ def resgen(query, context):
         response = full_text[response_start_index:].strip()
     except ValueError:
         response = "Sorry, I couldn't process your request properly."
+
+        # Find the last full stop in the output to ensure a complete sentence
+    last_period_index = response.rfind('.')
+    if last_period_index != -1:
+        # Return the text up to and including the last full stop
+        response = response[:last_period_index + 1]
+    else:
+        # If no full stop is found, return the whole text or handle it as you see fit
+        response = response
 
     return response
 
