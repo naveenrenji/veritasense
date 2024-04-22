@@ -26,7 +26,7 @@ Flask-PyMongo==2.3.0
 Flask-Session==0.6.0
 frozenlist==1.4.0
 fsspec==2023.9.2
-huggingface-hub==0.21.1
+huggingface-hub==0.16.4
 idna==3.4
 importlib-metadata==6.8.0
 itsdangerous==2.1.2
