@@ -1,5 +1,5 @@
 import warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
+warnings.filterwarnings("ignore")
 
 from stageOne.getcontext import get_answer, load_data
 from stageTwo.getResponse import get_answer2, load_data2

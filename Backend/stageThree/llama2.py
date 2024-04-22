@@ -1,3 +1,9 @@
+from huggingface_hub import login
+
+auth_token = "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"
+login(auth_token)
+
+
 from transformers import AutoModelForCausalLM, AutoTokenizer
 model_name = "meta-llama/Llama-2-7b-chat-hf"
 question = "Explain Tokenisation in NLP?"
