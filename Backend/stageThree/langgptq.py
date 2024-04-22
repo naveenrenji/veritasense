@@ -2,8 +2,8 @@ import torch
 from langchain import HuggingFacePipeline, PromptTemplate, LLMChain
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, pipeline
 from huggingface_hub import login
-auth_token = "hf_PGRTBdemyzIopkpmdyvhEsMEoQabUzzjL"
-login(auth_token)
+access_token = "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"
+login(access_token)
 
 # Initialize the model and tokenizer
 MODEL_NAME = "TheBloke/Llama-2-13b-Chat-GPTQ"
