@@ -1,7 +1,6 @@
 from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferMemory
 from langchain_experimental.chat_models import Llama2Chat
-
 from langchain_core.messages import SystemMessage
 from langchain_core.prompts.chat import (
     ChatPromptTemplate,
@@ -10,7 +9,7 @@ from langchain_core.prompts.chat import (
 )
 
 template_messages = [
-    SystemMessage(content="You are a helpful assistant."),
+    SystemMessage(content="You are a compuer science professor."),
     MessagesPlaceholder(variable_name="chat_history"),
     HumanMessagePromptTemplate.from_template("{text}"),
 ]
@@ -39,3 +38,19 @@ print(
 
 
 print(chain.run(text="Tell me more about #2."))
+
+
+
+
+# docker run \
+#   --rm \
+#   --gpus all \
+#   --ipc=host \
+#   -p 8080:80 \
+#   -v ~/.cache/huggingface/hub:/data \
+#   -e HF_API_TOKEN="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" \
+#   ghcr.io/huggingface/text-generation-inference:0.9 \
+#   --hostname 0.0.0.0 \
+#   --model-id meta-llama/Llama-2-13b-chat-hf \
+#   --quantize bitsandbytes \
+#   --num-shard 1

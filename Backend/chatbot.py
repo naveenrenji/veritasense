@@ -4,8 +4,43 @@ warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
 from stageOne.getcontext import get_answer, load_data
 from stageTwo.getResponse import get_answer2, load_data2
 # from stageTwo.dataloading import get_SSE_results, load_model_and_data
-from stageThree.gptneo import generate_response
+# from stageThree.gptneo import generate_response
 from time import time
+
+
+from langchain.chains import LLMChain
+from langchain.memory import ConversationBufferMemory
+from langchain_experimental.chat_models import Llama2Chat
+
+from langchain_core.messages import SystemMessage
+from langchain_core.prompts.chat import (
+    ChatPromptTemplate,
+    HumanMessagePromptTemplate,
+    MessagesPlaceholder,
+)
+
+
+template_messages = [
+    SystemMessage(content="You are a compuer science professor."),
+    MessagesPlaceholder(variable_name="chat_history"),
+    HumanMessagePromptTemplate.from_template("{text}"),
+]
+prompt_template = ChatPromptTemplate.from_messages(template_messages)
+
+from langchain_community.llms import HuggingFaceTextGenInference
+
+llm = HuggingFaceTextGenInference(
+    inference_server_url="http://127.0.0.1:8080/",
+    max_new_tokens=512,
+    top_k=50,
+    temperature=0.1,
+    repetition_penalty=1.03,
+)
+
+model = Llama2Chat(llm=llm)
+
+memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+chain = LLMChain(llm=model, prompt=prompt_template, memory=memory)
 
 
 # # Initialize global variables to None
@@ -48,9 +83,12 @@ def get_bot_response(query):
     if context == 'not found':
         response = "Hello, please ask me a question related to Python Programming."
     else: 
-        print("this one")
-        print(query, context)
-        response = generate_response(query, context)
+        # print("this one")
+        # print(query, context)
+        prompt = f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {query}\nThis is the context to use - Context: {context}. now respond based on the context -"
+        response = chain.run(text=prompt)
+        
+        # response = generate_response(query, context)
         # response = "Temporary response data -- " + context
 
     print("started response generation")

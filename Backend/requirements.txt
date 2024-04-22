@@ -91,3 +91,6 @@ zipp==3.17.0
 gunicorn
 xformers
 bitsandbytes
+langchain
+langchain_experimental
+text-generation==0.7.0
