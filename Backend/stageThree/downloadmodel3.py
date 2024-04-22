@@ -3,7 +3,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 
 # Setup model directory
-model_dir = './models'
+model_dir = './models/Llama-2-13b-Chat-GPTQ'
 MODEL_NAME = "TheBloke/Llama-2-13b-Chat-GPTQ"
 
 # Ensure the directory exists
