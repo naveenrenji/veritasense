@@ -13,8 +13,8 @@ model = AutoModelForCausalLM.from_pretrained(
 
 # Configure the model generation settings
 generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
-generation_config.max_new_tokens = 256
-generation_config.temperature = 0.0001
+generation_config.max_new_tokens = 512
+generation_config.temperature = 0.1
 generation_config.top_p = 0.95
 generation_config.do_sample = True
 generation_config.repetition_penalty = 1.15
