@@ -98,14 +98,17 @@ general_discussion_chain = LLMChain(llm=llm, prompt=general_discussion_template)
 technical_explanation_chain = LLMChain(llm=llm, prompt=technical_explanation_template)
 
 # Depending on the nature of the query, decide which chain to use
-def resgen(query, context, history):
+def resgen(query, context):
+    # Update the history with the current context and query
+    history_queue.append(f"Context: {context}, Query: {query}")
+
     if "explain" in query.lower() or "define" in query.lower():
         chain = technical_explanation_chain
     else:
         chain = general_discussion_chain
 
     # Form the complete history from deque
-    history_str = " ".join(history)
+    history_str = " ".join(history_queue)
     response = chain.run({"history": history_str, "context": context, "query": query})
     return response
 
