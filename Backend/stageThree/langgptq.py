@@ -94,21 +94,21 @@ def resgen(query, context):
 
 
 # Example usage
-if __name__ == "__main__":
-    context = "Today we will discuss neural networks."
-    query = "Can you explain what deep learning is?"
-    response = resgen(query, context)
-    print(response)
-    print("next")
-    # Example query and context
-    query = "What is the role of AI in healthcare?"
-    context = """Artificial Intelligence in healthcare is used for diagnoses, treatment recommendations, and patient monitoring. AI can analyze complex medical data much faster than a human doctor and predict diseases early."""
-    response = resgen(query, context)
-    print(response)
-    print ("next! ")
-    # Example query and context
-    query = "Explain Tokenisation in NLP?"
-    context = """Tokenization is the process of replacing sensitive data with a surrogate value, or token, that is non-sensitive and randomized. Tokens are unique identifiers that retain all the important information about the data without compromising its security. For example, a credit card number can be replaced with a token, which is a string of randomized characters. 
-    Tokenization can also refer to the process of breaking down a sequence of text into smaller parts, known as tokens. These tokens can be as small as characters or as long as words. For example, tokenizing the sentence “I love ice cream” would result in three tokens: “I,” “love,” and “ice cream”. This process is fundamental in natural language processing and text analysis tasks. """
-    response = resgen(query, context)
-    print(response)
+# if __name__ == "__main__":
+#     context = "Today we will discuss neural networks."
+#     query = "Can you explain what deep learning is?"
+#     response = resgen(query, context)
+#     print(response)
+#     print("next")
+#     # Example query and context
+#     query = "What is the role of AI in healthcare?"
+#     context = """Artificial Intelligence in healthcare is used for diagnoses, treatment recommendations, and patient monitoring. AI can analyze complex medical data much faster than a human doctor and predict diseases early."""
+#     response = resgen(query, context)
+#     print(response)
+#     print ("next! ")
+#     # Example query and context
+#     query = "Explain Tokenisation in NLP?"
+#     context = """Tokenization is the process of replacing sensitive data with a surrogate value, or token, that is non-sensitive and randomized. Tokens are unique identifiers that retain all the important information about the data without compromising its security. For example, a credit card number can be replaced with a token, which is a string of randomized characters. 
+#     Tokenization can also refer to the process of breaking down a sequence of text into smaller parts, known as tokens. These tokens can be as small as characters or as long as words. For example, tokenizing the sentence “I love ice cream” would result in three tokens: “I,” “love,” and “ice cream”. This process is fundamental in natural language processing and text analysis tasks. """
+#     response = resgen(query, context)
+#     print(response)
