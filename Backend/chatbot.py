@@ -60,6 +60,6 @@ def get_bot_response(query):
 #     return "mock"
 
 
-print(get_bot_response("what is object oriented programming?"))
+# print(get_bot_response("what is object oriented programming?"))
 
-get_bot_response("what version of python are we using in class?")
+# get_bot_response("Explain Tokenisation in NLP?")
