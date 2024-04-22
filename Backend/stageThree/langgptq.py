@@ -1,7 +1,7 @@
 import torch
 from langchain import HuggingFacePipeline, PromptTemplate, LLMChain
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, pipeline
-from huggingfacej_hub import login
+from huggingface_hub import login
 auth_token = "hf_PGRTBdemyzIopkpmdyvhEsMEoQabUzzjL"
 login(auth_token)
 
