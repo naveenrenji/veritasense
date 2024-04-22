@@ -13,7 +13,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 # Configure the model generation settings
 generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
-generation_config.max_new_tokens = 1024
+generation_config.max_new_tokens = 256
 generation_config.temperature = 0.0001
 generation_config.top_p = 0.95
 generation_config.do_sample = True
@@ -76,7 +76,9 @@ general_discussion_template = PromptTemplate(
     input_variables=["history", "context", "query"],
     template="""
     <s>[INST] <sys-instruction> As a computer science professor, respond with clarity and depth.
-    Provide detailed explanations and relevant examples. </sys-instruction>
+    Provide detailed explanations and relevant examples. 
+    Dont use greetings in the response, like hi there or hello, and no need to tell who you are, just respond with the dialogue of the professor
+    </sys-instruction>
     <sys-context> Historical Context: {history} </sys-context>
     <sys-query> Current Topic: {context}. Inquiry: {query} </sys-query> [/INST]
     """
@@ -87,7 +89,7 @@ technical_explanation_template = PromptTemplate(
     input_variables=["history", "context", "query"],
     template="""
     <s>[INST] <sys-instruction> As a computer science professor, focus on technical accuracy and detail.
-    Use diagrams if necessary and relate the response to underlying theories or algorithms. </sys-instruction>
+    Use whatever is necessary and relate the response to underlying theories or algorithms. Dont use greetings in the response, like hi there or hello, and no need to tell who you are, just respond with the dialogue of the professor </sys-instruction>
     <sys-context> Previous interactions: {history} </sys-context>
     <sys-query> Topic of Discussion: {context}. Technical Question: {query} </sys-query> [/INST]
     """
