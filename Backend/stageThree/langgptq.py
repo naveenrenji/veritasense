@@ -6,18 +6,24 @@ from collections import deque
 
 # Initialize the model and tokenizer
 MODEL_NAME = "TheBloke/Llama-2-13b-Chat-GPTQ"
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
-model = AutoModelForCausalLM.from_pretrained(
-    MODEL_NAME, torch_dtype=torch.float16, trust_remote_code=True, device_map="auto"
-)
+# tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
+# model = AutoModelForCausalLM.from_pretrained(
+#     MODEL_NAME, torch_dtype=torch.float16, trust_remote_code=True, device_map="auto"
+# )
 
-# Configure the model generation settings
-generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
-generation_config.max_new_tokens = 512
-generation_config.temperature = 0.1
-generation_config.top_p = 0.95
-generation_config.do_sample = True
-generation_config.repetition_penalty = 1.15
+# # Configure the model generation settings
+# generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
+# generation_config.max_new_tokens = 512
+# generation_config.temperature = 0.1
+# generation_config.top_p = 0.95
+# generation_config.do_sample = True
+# generation_config.repetition_penalty = 1.15
+
+model_dir = './models/Llama-2-13b-Chat-GPTQ'
+
+tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=True)
+model = AutoModelForCausalLM.from_pretrained(model_dir, torch_dtype=torch.float16, trust_remote_code=True, device_map="auto")
+generation_config = GenerationConfig.from_pretrained(model_dir)
 
 text_pipeline = pipeline(
     "text-generation",
@@ -94,21 +100,21 @@ def resgen(query, context):
 
 
 # Example usage
-# if __name__ == "__main__":
-#     context = "Today we will discuss neural networks."
-#     query = "Can you explain what deep learning is?"
-#     response = resgen(query, context)
-#     print(response)
-#     print("next")
-#     # Example query and context
-#     query = "What is the role of AI in healthcare?"
-#     context = """Artificial Intelligence in healthcare is used for diagnoses, treatment recommendations, and patient monitoring. AI can analyze complex medical data much faster than a human doctor and predict diseases early."""
-#     response = resgen(query, context)
-#     print(response)
-#     print ("next! ")
-#     # Example query and context
-#     query = "Explain Tokenisation in NLP?"
-#     context = """Tokenization is the process of replacing sensitive data with a surrogate value, or token, that is non-sensitive and randomized. Tokens are unique identifiers that retain all the important information about the data without compromising its security. For example, a credit card number can be replaced with a token, which is a string of randomized characters. 
-#     Tokenization can also refer to the process of breaking down a sequence of text into smaller parts, known as tokens. These tokens can be as small as characters or as long as words. For example, tokenizing the sentence “I love ice cream” would result in three tokens: “I,” “love,” and “ice cream”. This process is fundamental in natural language processing and text analysis tasks. """
-#     response = resgen(query, context)
-#     print(response)
+if __name__ == "__main__":
+    context = "Today we will discuss neural networks."
+    query = "Can you explain what deep learning is?"
+    response = resgen(query, context)
+    print(response)
+    print("next")
+    # Example query and context
+    query = "What is the role of AI in healthcare?"
+    context = """Artificial Intelligence in healthcare is used for diagnoses, treatment recommendations, and patient monitoring. AI can analyze complex medical data much faster than a human doctor and predict diseases early."""
+    response = resgen(query, context)
+    print(response)
+    print ("next! ")
+    # Example query and context
+    query = "Explain Tokenisation in NLP?"
+    context = """Tokenization is the process of replacing sensitive data with a surrogate value, or token, that is non-sensitive and randomized. Tokens are unique identifiers that retain all the important information about the data without compromising its security. For example, a credit card number can be replaced with a token, which is a string of randomized characters. 
+    Tokenization can also refer to the process of breaking down a sequence of text into smaller parts, known as tokens. These tokens can be as small as characters or as long as words. For example, tokenizing the sentence “I love ice cream” would result in three tokens: “I,” “love,” and “ice cream”. This process is fundamental in natural language processing and text analysis tasks. """
+    response = resgen(query, context)
+    print(response)
