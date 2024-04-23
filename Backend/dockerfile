@@ -16,7 +16,7 @@ RUN python stageOne/prepareData.py
 RUN python stageTwo/prepareData.py
 
 #download and test run the response generator
-RUN python stageThree/langgptq.py
+#RUN python stageThree/langgptq.py
 
 #CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 
