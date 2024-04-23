@@ -13,7 +13,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 # Configure the model generation settings
 generation_config = GenerationConfig.from_pretrained(MODEL_NAME)
-generation_config.max_new_tokens = 512
+generation_config.max_new_tokens = 768
 generation_config.temperature = 0.1
 generation_config.top_p = 0.95
 generation_config.do_sample = True
@@ -75,11 +75,11 @@ def resgen(query, context):
     history_str = " ".join(history_queue)
     full_text = chain.run({"history": history_str, "context": context, "query": query})
 
-    try:
-        response_start_index = full_text.index('[/INST]') + len('[/INST]')
-        response = full_text[response_start_index:].strip()
-    except ValueError:
-        response = "Sorry, I couldn't process your request properly."
+    # try:
+    #     response_start_index = full_text.index('[/INST]') + len('[/INST]')
+    #     response = full_text[response_start_index:].strip()
+    # except ValueError:
+    #     response = "Sorry, I couldn't process your request properly."
 
     last_period_index = response.rfind('.')
     if last_period_index != -1:
