@@ -64,9 +64,7 @@ technical_explanation_template = PromptTemplate(
 general_discussion_chain = LLMChain(llm=llm, prompt=general_discussion_template)
 technical_explanation_chain = LLMChain(llm=llm, prompt=technical_explanation_template)
 
-# Depending on the nature of the query, decide which chain to use
 def resgen(query, context):
-    # Update the history with the current context and query
     history_queue.append(f"Context: {context}, Query: {query}")
 
     if "explain" in query.lower() or "define" in query.lower():
@@ -74,25 +72,19 @@ def resgen(query, context):
     else:
         chain = general_discussion_chain
 
-    # Form the complete history from deque
     history_str = " ".join(history_queue)
     full_text = chain.run({"history": history_str, "context": context, "query": query})
 
-        # Extract the response by finding the marker '[/INST]' and taking the text that follows
     try:
-        # Locate the end of the prompt
         response_start_index = full_text.index('[/INST]') + len('[/INST]')
         response = full_text[response_start_index:].strip()
     except ValueError:
         response = "Sorry, I couldn't process your request properly."
 
-        # Find the last full stop in the output to ensure a complete sentence
     last_period_index = response.rfind('.')
     if last_period_index != -1:
-        # Return the text up to and including the last full stop
         response = response[:last_period_index + 1]
     else:
-        # If no full stop is found, return the whole text or handle it as you see fit
         response = response
 
     return response
