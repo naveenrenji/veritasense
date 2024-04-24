@@ -6,14 +6,10 @@ from pymongo import MongoClient
 from flask_session import Session
 from flask_bcrypt import Bcrypt
 import os
-#from dotenv import load_dotenv
 
 _deployed_env_ = os.environ.get("ENVIRONMENT", default=None)
 
 app = Flask(__name__)
-#load_dotenv()
-# print(config.ApplicationConfig)
-# app.config.from_object(config.ApplicationConfig)
 app.secret_key = os.urandom(24)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config.from_object('settings')
@@ -29,8 +25,6 @@ bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
 
 server_session  = Session(app)
-
-# print(app.config.get('MONGO_URI'))
 
 MONGO_URI = app.config.get('MONGO_URI')
 # connecting to the mongoDb client 
