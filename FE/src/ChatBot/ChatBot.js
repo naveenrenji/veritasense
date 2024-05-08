@@ -103,7 +103,7 @@ function ChatBot() {
               <img src={botAvatar} alt="Bot Avatar" className="bot-avatar" />
             )}
             <p className={`chat-message ${message.sender}`}>
-              {message.content}
+              <pre>{message.content}</pre>
             </p>
           </div>
         ))}

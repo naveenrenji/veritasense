@@ -31,17 +31,14 @@ messages = [
 
 
 def signup(user):
-    """Function to simulate user signup."""
     response = requests.post(f"{base_url}{signup_endpoint}", json=user)
     return response.status_code
 
 def login(user):
-    """Function to simulate user login."""
     response = requests.post(f"{base_url}{login_endpoint}", json=user)
     return response.json()['session_token'] 
 
 def logout(token):
-    """Function to simulate user logout."""
     headers = {'Authorization': f'Bearer {token}'}
     response = requests.post(f"{base_url}{logout_endpoint}", headers=headers)
     return response.status_code
@@ -55,7 +52,6 @@ def send_message(token, message):
 
 def simulate_user_interaction(user, messages):
     print("started single user for user ", user["name"])
-    """Simulate a single user interaction from signup to logout."""
     user_times = {'signup_time': 0, 'login_time': 0, 'message_times': [], 'logout_time': 0, 'messages_responses': []}
     start_time = time.time()
     signup_status = signup(user)
@@ -79,16 +75,13 @@ def simulate_user_interaction(user, messages):
     return user_times
 
 def perform_test(users, messages):
-    """Perform tests and save results to CSV."""
     all_user_times = []
     with ThreadPoolExecutor(max_workers=len(users)) as executor:
         user_times_list = list(executor.map(lambda user: simulate_user_interaction(user, messages), users))
         all_user_times.extend(user_times_list)
 
-    #  average time for all operations
     average_response_time = sum(sum(user_times['message_times']) for user_times in all_user_times) / sum(len(user_times['message_times']) for user_times in all_user_times)
 
-    # Save results to CSV
     with open('test_results.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         for i, user_times in enumerate(all_user_times, start=1):
