@@ -3,6 +3,7 @@ import requests
 
 # NOTE: ollama must be running for this to work, start the ollama app or run `ollama serve`
 model = "llama3"  # TODO: update this for whatever model you wish to use
+messages = []
 
 
 def chat(messages):
@@ -29,19 +30,10 @@ def chat(messages):
             return message
 
 
-def main():
-    messages = []
+def response_generator(question, context):
+    prompt = f"Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context as well as your own knowledge."
+    messages.append({"role": "user", "content": prompt})
+    message = chat(messages)
+    messages.append(message)
+    return message
 
-    while True:
-        user_input = input("Enter a prompt: ")
-        if not user_input:
-            exit()
-        print()
-        messages.append({"role": "user", "content": user_input})
-        message = chat(messages)
-        messages.append(message)
-        print("\n\n")
-
-
-if __name__ == "__main__":
-    main()

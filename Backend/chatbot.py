@@ -4,7 +4,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
 from stageOne.getcontext import get_answer, load_data
 from stageTwo.getResponse import get_answer2, load_data2
 # from stageTwo.dataloading import get_SSE_results, load_model_and_data
-#from stageThree.langgptq import resgen
+from stageThree.llama3 import response_generator
 from time import time
 
 
@@ -48,8 +48,8 @@ def get_bot_response(query):
     if context == 'not found':
         response = "Hello, please ask me a question related to Python Programming."
     else: 
-        #response = resgen(query, context)
-        response = "Temporary response data -- " + context
+        response = response_generator(query, context)
+        #response = "Temporary response data -- " + context
 
     print("started response generation")
     print('Total time:', round(time() - t, 4), 'seconds')
@@ -63,3 +63,16 @@ def get_bot_response(query):
 # print(get_bot_response("what is object oriented programming?"))
 
 # get_bot_response("Explain Tokenisation in NLP?")
+
+def main():
+    while True:
+        user_input = input("Enter a prompt: ")
+        if not user_input:
+            exit()
+        print()
+        print(get_bot_response(user_input))
+        print("\n\n")
+
+
+if __name__ == "__main__":
+    main()
