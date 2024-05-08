@@ -15,7 +15,7 @@ prompt = ChatPromptTemplate.from_messages(
 )
 
 # Ollama Llama2 LLM
-llm = Ollama(model="gemma:2b")
+llm = Ollama(model="llama3")
 output_parser = StrOutputParser()
 chain = prompt | llm | output_parser
 
