@@ -37,3 +37,10 @@ Before running your Flask application, you need to set the FLASK_APP environment
 
 Your API will be available at http://localhost:5000.
 
+
+
+6. To install llama3 from ollama - curl -fsSL https://ollama.com/install.sh | sh
+
+7. to start ollama - ollama run llama3
+
+
