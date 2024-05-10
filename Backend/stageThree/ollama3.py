@@ -31,7 +31,7 @@ def chat(question):
     return response
 
 # Function to manage the messages list and generate responses
-def response_generator(question):
+def response_generator(question, context):
     combined_question = f"Based on the context, answer this question as a computer science Python Programming professor chatbot: {question}\nContext: {context}. Respond based on the context and your knowledge."
     response = chat(combined_question)
     # Store user's question and system's response, maintaining only the last 5 interactions
@@ -48,5 +48,8 @@ while True:
     input_text = input("Enter the topic you want to ask about: ")
     if input_text.lower() == 'exit':
         break
-    response = response_generator(input_text)
+    context = "" 
+    response = response_generator(input_text, context)
     print("Response:", response)
+
+
