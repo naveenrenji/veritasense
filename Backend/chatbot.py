@@ -4,7 +4,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
 from stageOne.getcontext import get_answer, load_data
 from stageTwo.getResponse import get_answer2, load_data2
 # from stageTwo.dataloading import get_SSE_results, load_model_and_data
-from stageThree.ollama3 import response_generator
+from stageThree.llama3 import response_generator
 from time import time
 
 
@@ -60,19 +60,19 @@ def get_bot_response(query):
 #     return "mock"
 
 
-# print(get_bot_response("what is object oriented programming?"))
+print(get_bot_response("what is object oriented programming?"))
 
-# get_bot_response("Explain Tokenisation in NLP?")
+get_bot_response("Explain Tokenisation in NLP?")
 
-# def main():
-#     while True:
-#         user_input = input("Enter a prompt: ")
-#         if not user_input:
-#             exit()
-#         print()
-#         print(get_bot_response(user_input))
-#         print("\n\n")
+def main():
+    while True:
+        user_input = input("Enter a prompt: ")
+        if not user_input:
+            exit()
+        print()
+        print(get_bot_response(user_input))
+        print("\n\n")
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()

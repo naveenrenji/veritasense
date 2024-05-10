@@ -38,10 +38,10 @@ def response_generator(question, context):
     return message
 
 
-while True:
-    input_text = input("Enter the topic you want to ask about: ")
-    if input_text.lower() == 'exit':
-        break
-    context = "" 
-    response = response_generator(input_text, context)
-    print("Response:", response)
+# while True:
+#     input_text = input("Enter the topic you want to ask about: ")
+#     if input_text.lower() == 'exit':
+#         break
+#     context = "" 
+#     response = response_generator(input_text, context)
+#     print("Response:", response)
