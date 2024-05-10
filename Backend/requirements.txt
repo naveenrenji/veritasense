@@ -90,7 +90,9 @@ gunicorn
 xformers==0.0.21
 bitsandbytes
 text-generation==0.7.0
-langchain==0.0.299
 optimum==1.13.1
 auto-gptq==0.4.2
 unstructured==0.10.16
+langchain==0.1.17
+langchain-community==0.0.37
+langchain-core==0.1.52
