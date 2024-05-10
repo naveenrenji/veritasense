@@ -12,7 +12,7 @@ messages = []
 # Initialize the prompt for Langchain's Ollama model
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "You are a helpful assistant. Please respond to the user queries."),
+        ("system", "You are a helpful Python Programming assistant. Please respond to the user queries."),
         ("user", "Question: {question}")
     ]
 )
@@ -32,7 +32,8 @@ def chat(question):
 
 # Function to manage the messages list and generate responses
 def response_generator(question):
-    response = chat(question)
+    combined_question = f"Based on the context, answer this question as a computer science Python Programming professor chatbot: {question}\nContext: {context}. Respond based on the context and your knowledge."
+    response = chat(combined_question)
     # Store user's question and system's response, maintaining only the last 5 interactions
     messages.append({"role": "user", "content": question})
     messages.append({"role": "system", "content": response})
