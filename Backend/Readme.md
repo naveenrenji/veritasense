@@ -38,6 +38,12 @@ Before running your Flask application, you need to set the FLASK_APP environment
 Your API will be available at http://localhost:5000.
 
 
+6. docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+
+docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+
+docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+
 
 6. To install llama3 from ollama - curl -fsSL https://ollama.com/install.sh | sh
 
