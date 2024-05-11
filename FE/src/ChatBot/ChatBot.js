@@ -57,7 +57,7 @@ function ChatBot() {
             "I don't know how to respond to that, please try another question. ",
         },
       ];
-      if (response.data.response) {
+      if (response.data.response.content) {
         messagedata = [
           {
             sender: "user",
@@ -66,7 +66,7 @@ function ChatBot() {
           {
             // sender: "Carlo Lipizzi",
             sender: "Veritasense",
-            content: response.data.response,
+            content: response.data.response.content,
           },
         ];
       } else {
