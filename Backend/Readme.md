@@ -91,3 +91,9 @@ bash
 Copy code
 docker exec -it great_perlman curl http://ollama:11434
 If curl is not installed, you can install it temporarily or use a Python script as mentioned previously to perform the test.
+
+
+
+ You can stop it using systemctl.
+
+$ systemctl stop ollama.service

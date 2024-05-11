@@ -51,7 +51,7 @@ def send_message(token, message):
     # return "test"
 
 def simulate_user_interaction(user, messages):
-    print("started single user for user ", user["name"])
+    print("started single user for  ", user["name"])
     user_times = {'signup_time': 0, 'login_time': 0, 'message_times': [], 'logout_time': 0, 'messages_responses': []}
     start_time = time.time()
     signup_status = signup(user)
@@ -70,7 +70,7 @@ def simulate_user_interaction(user, messages):
     start_time = time.time()
     logout_status = logout(token)
     user_times['logout_time'] = time.time() - start_time
-    print("completed single user for user ", user["name"])
+    print("completed single user for  ", user["name"])
 
     return user_times
 
