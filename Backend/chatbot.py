@@ -64,15 +64,15 @@ def get_bot_response(query):
 
 # get_bot_response("Explain Tokenisation in NLP?")
 
-# def main():
-#     while True:
-#         user_input = input("Enter a prompt: ")
-#         if not user_input:
-#             exit()
-#         print()
-#         print(get_bot_response(user_input))
-#         print("\n\n")
+def main():
+    while True:
+        user_input = input("Enter a prompt: ")
+        if not user_input:
+            exit()
+        print()
+        print(get_bot_response(user_input))
+        print("\n\n")
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
