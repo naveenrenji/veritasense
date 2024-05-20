@@ -61,18 +61,18 @@ def get_answerTwo(query, model, question_embeddings, questions, df):
     else:
         return "No satisfactory answer found."
 
-if __name__ == '__main__':
-    stageTwoModel, question_embeddings, questions, df = load_data2()
-    # Example queries
-    example_queries = [
-        "how to install jupyter",
-        "Can I present my code on jupyter notebook for the presentation?",
-        "Can I please have the EM 624 midterm scheduled to a different time as well?",
-        "My outlook isn't working, can I send through canvas?",
-        "how to merge pandas"
+# if __name__ == '__main__':
+#     stageTwoModel, question_embeddings, questions, df = load_data2()
+#     # Example queries
+#     example_queries = [
+#         "how to install jupyter",
+#         "Can I present my code on jupyter notebook for the presentation?",
+#         "Can I please have the EM 624 midterm scheduled to a different time as well?",
+#         "My outlook isn't working, can I send through canvas?",
+#         "how to merge pandas"
 
-    ]
+#     ]
 
-    for query in example_queries:
-        context = get_answerTwo(query, stageTwoModel, question_embeddings, questions, df)
-        print(query,context)
+#     for query in example_queries:
+#         context = get_answerTwo(query, stageTwoModel, question_embeddings, questions, df)
+#         print(query,context)

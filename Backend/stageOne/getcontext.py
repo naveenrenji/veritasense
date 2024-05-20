@@ -58,17 +58,17 @@ def get_answerOne(query, model, question_embeddings, questions, df):
     else:
         return "No satisfactory answer found."
 
-# Example usage
-if __name__ == '__main__':
-    model, question_embeddings, questions, df = load_data()
-    # Example queries
-    example_queries = [
-        "how to install jupyter",
-        "Can I present my code on jupyter notebook for the presentation?",
-        "Can I please have the EM 624 midterm scheduled to a different time as well?",
-        "My outlook isn't working, can I send through canvas?"
-    ]
+# # Example usage
+# if __name__ == '__main__':
+#     model, question_embeddings, questions, df = load_data()
+#     # Example queries
+#     example_queries = [
+#         "how to install jupyter",
+#         "Can I present my code on jupyter notebook for the presentation?",
+#         "Can I please have the EM 624 midterm scheduled to a different time as well?",
+#         "My outlook isn't working, can I send through canvas?"
+#     ]
 
-    for query in example_queries:
-        context = get_answerOne(query, model, question_embeddings, questions, df)
-        print(query,context)
+#     for query in example_queries:
+#         context = get_answerOne(query, model, question_embeddings, questions, df)
+#         print(query,context)
