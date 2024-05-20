@@ -30,7 +30,7 @@ def chat(messages):
 
 
 def response_generator(question, context):
-    prompt = f"Only Answer if the question is regadring the field of Computer Science or Python Programming, Else refuse to answer straight away. Answer this Question based on the context, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context as well as your own knowledge."
+    prompt = f"Only Answer if the question is regadring the field of Computer Science or Python Programming, Else refuse to answer straight away and ask them to only ask about Python Programming. Answer this Question based on the context if available, you are playing the role of a computer science professor chatbot: {question}\nThis is the context to use - Context: {context}. now respond based on the context as well as your own knowledge."
     messages.append({"role": "user", "content": prompt})
     message = chat(messages)
     messages.append(message)

@@ -39,17 +39,36 @@ def get_answer(query, model, question_embeddings, questions, df):
     else:
         print("There was no direct match with existing questions.")
         return 'not found'
+    
+def get_answerOne(query, model, question_embeddings, questions, df):
+    query_embedding = model.encode([query], show_progress_bar=False).reshape(1, -1)
+    similarities = cosine_similarity(query_embedding, question_embeddings)[0]
+    valid_indices = np.where(similarities > 0.6)[0]
+    valid_similarities = similarities[valid_indices]
+    top_indices = valid_indices[np.argsort(valid_similarities)[-5:][::-1]]
+    if len(top_indices) > 0:
+        answers = []
+        for idx in top_indices:
+            matched_question = questions[idx]
+            answer = df['answer'][idx]
+            #print(f"Query: {query} || Matched question: {matched_question} || Answer: {answer} || Similarity: {similarities[idx]}")
+            answers.append(answer)
+            concatenated_answers = ' .'.join(answers)
+        return concatenated_answers
+    else:
+        return "No satisfactory answer found."
 
-# # Example usage
-# if __name__ == '__main__':
-#     model, question_embeddings, questions, df = load_data()
-#     # Example queries
-#     example_queries = [
-#         "how to install jupyter",
-#         "Can I present my code on jupyter notebook for the presentation?",
-#         "Can I please have the EM 624 midterm scheduled to a different time as well?",
-#         "My outlook isn't working, can I send through canvas?"
-#     ]
+# Example usage
+if __name__ == '__main__':
+    model, question_embeddings, questions, df = load_data()
+    # Example queries
+    example_queries = [
+        "how to install jupyter",
+        "Can I present my code on jupyter notebook for the presentation?",
+        "Can I please have the EM 624 midterm scheduled to a different time as well?",
+        "My outlook isn't working, can I send through canvas?"
+    ]
 
-#     for query in example_queries:
-#         get_answer(query, model, question_embeddings, questions, df)
+    for query in example_queries:
+        context = get_answerOne(query, model, question_embeddings, questions, df)
+        print(query,context)

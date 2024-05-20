@@ -6,3 +6,4 @@ Backend/models/*
 /Backend/stageTwo/models
 *.pkl
 /FE/node_modules
+/models

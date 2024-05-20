@@ -1,8 +1,8 @@
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="torch._utils")
 
-from stageOne.getcontext import get_answer, load_data
-from stageTwo.getResponse import get_answer2, load_data2
+from stageOne.getcontext import get_answerOne, load_data
+from stageTwo.getResponse import get_answerTwo, load_data2
 # from stageTwo.dataloading import get_SSE_results, load_model_and_data
 from stageThree.llama3 import response_generator
 from time import time
@@ -27,11 +27,11 @@ def get_bot_response(query):
     #     stageOneModel, question_embeddings, questions, df = load_data()
     #     loadedStageOneModel = True
     stageOneModel, question_embeddings, questions, df = load_data()
-    context = get_answer(query, stageOneModel, question_embeddings, questions, df)
+    context = get_answerOne(query, stageOneModel, question_embeddings, questions, df)
     print("stage 1 done")
 
     # If the response was '', there was no match at stage 1, hence -> stage 2 component
-    if context == 'not found':
+    if context == 'No satisfactory answer found.':
         # if loadedStageTwoModel is False:
         #     stageTwoModel, corpus_sentences, corpus_embeddings = load_model_and_data()
         #     loadedStageTwoModel = True
@@ -40,13 +40,13 @@ def get_bot_response(query):
         # print(context) # for debugging only
         # pass  # Placeholder for stage 2 component
         stageOneModel, question_embeddings, questions, df = load_data2()
-        context = get_answer2(query, stageOneModel, question_embeddings, questions, df)
+        context = get_answerTwo(query, stageOneModel, question_embeddings, questions, df)
         print(context) # for debugging only
 
     # Now we pass the data to the stage 3 component. 
     # context = "python3.0 is the version we use in class"
-    if context == 'not found':
-        response = "Hello, please ask me a question related to Python Programming."
+    if context == 'No satisfactory answer found.':
+        response = response_generator(query, context)
     else: 
         response = response_generator(query, context)
         #response = "Temporary response data -- " + context
